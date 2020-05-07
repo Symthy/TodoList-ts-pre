@@ -15,3 +15,6 @@ webpack4 を使用して フォーマット→自動コンパイル&バンドル
 - webpack 初期導入
 
 https://github.com/Symthy/TodoList-ts-pre/tree/record/first-webpack-introduction
+
+
+## issue は メモ帳
