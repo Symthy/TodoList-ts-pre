@@ -1,12 +1,11 @@
 import "../css/style.scss";
-import { User } from "./model/user";
+import { State } from "./model/todo";
+import { Todo } from "./model/todo";
 
 function createElement() {
   const element = document.createElement("div");
-  const user: User = new User("Type", "Script", 20);
-  element.innerHTML = ["Hello", "world", user.firstName, user.lastName].join(
-    " "
-  );
+  const todo: Todo = new Todo("test", new Date(), 1, 1, State.WAITING, 0);
+  element.innerHTML = ["Hello", "world", todo.title, todo.workState].join(" ");
   return element;
 }
 
