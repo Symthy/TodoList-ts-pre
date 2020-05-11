@@ -1,4 +1,116 @@
-div {
-  border: 1px solid #aaa;
-  transform: scale(0.8);
+@import "../foundation/variable.scss";
+
+$headerHeight: 75px;
+$footerHeight: 25px;
+
+.l-mainArea {
+  //フッタ最下部固定
+  // todolistの高さ = 100vh - header+footerの高さ
+  //min-height: calc(100vh - 100px);
+}
+
+.l-flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#l-base {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  // grid-template-areas:
+  //   "head head"
+  //   "side main"
+  //   "side foot";
+  grid-template-rows: $headerHeight 1fr $footerHeight;
+  grid-template-columns: 160px 1fr;
+}
+
+#l-header {
+  //grid-area: "head";
+  grid-row: 1;
+  grid-column: 1 / span 2;
+  display: flex;
+  position: relative;
+}
+
+#l-todolist {
+  position: relative;
+  z-index: 1;
+  @extend .l-mainArea;
+  //grid-area: "main";
+  grid-row: 2;
+  grid-column: 2;
+
+  // flex setting : 中央配置
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //justify-content: center;
+
+  .l-todo {
+  }
+}
+
+#l-side {
+  //grid-area: "side";
+  grid-row: 2 / span 3;
+  grid-column: 1;
+  display: flex;
+
+  background-color: $baseColor;
+
+  #l-side-main {
+    flex-basis: 15/16 * 100%;
+    box-shadow: -5px 12px 10px 10px rgba(105, 105, 105, 0.2);
+    @extend .l-flex-column;
+
+    #l-side-nav {
+      flex-grow: 7;
+
+      #l-side-nav-list {
+        height: 100%;
+        text-align: center;
+        @extend .l-flex-column;
+      }
+    }
+
+    #l-side-option {
+      position: relative;
+      flex-grow: 5;
+    }
+  }
+
+  #l-side-bar {
+    flex-basis: 1/16 * 100%;
+    width: 5%;
+
+    position: relative;
+    #l-side-bar-child {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%) scaleX(0.5);
+    }
+  }
+}
+
+#l-footer {
+  // footer最下配置
+  position: sticky;
+  top: 100%;
+
+  padding: 0 5px;
+  //grid-area: "foot";
+  grid-row: 3;
+  grid-column: 2;
+  #l-footer-inner {
+    position: relative;
+    z-index: 1;
+    // flex setting: 縦中央/右寄せ
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
 }

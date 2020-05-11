@@ -1,16 +1,298 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Todo List Mini</title>
     <meta
       name="viewport"
       content="widle=device-width, initial-sclae=1.0, minimum-scale=1.0"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap"
+      rel="stylesheet"
+    />
   <link href="style.css" rel="stylesheet"></head>
-  <body>
-    <header></header>
-    <main>
-      <div>Todo List</div>
-    </main>
-    <footer></footer>
+
+  <body id="l-base">
+    <header id="l-header">
+      <div class="c-head-decore1"></div>
+      <div class="c-head-decore2"></div>
+      <h1 class="c-head-label">Todo List Mini</h1>
+      <button class="p-create-button c-button" type="button">
+        create task
+      </button>
+    </header>
+
+    <section id="l-todolist">
+      <section class="p-listbox">
+        <div class="p-listbox-title">
+          <div class="c-waiting-title-decoration1"></div>
+          <div class="c-waiting-title-decoration2"></div>
+          <h2 class="c-list-name">Waiting</h2>
+        </div>
+        <div class="p-listbox-body__waiting">
+          <div class="c-empty__before"></div>
+          <div class="p-todo">
+            <div class="p-todo-head__waiting c-todo-head"></div>
+            <div class="c-todo-body">
+              <h3 class="c-todo-title">
+                タスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスク
+              </h3>
+              <p class="c-todo-content">内容</p>
+              <p class="c-todo-memo">メモ</p>
+              <div class="p-todo-status__times">
+                <div class="p-todo-status__createtime">
+                  <p class="c-time-label">created time:</p>
+                  <time class="c-datetime">xx/xx/xx xx:xx</time>
+                </div>
+                <div class="p-todo-status__starttime">
+                  <p class="c-time-label">started time:</p>
+                  <time class="c-datetime">xx/xx/xx xx:xx</time>
+                </div>
+              </div>
+              <div class="p-todo-status">
+                <form class="p-todo-status__progress">
+                  <input
+                    type="range"
+                    value="0"
+                    min="0"
+                    max="100"
+                    step="10"
+                    oninput="document.getElementById('c-output').value=this.value"
+                  />
+                  <output id="c-output">0</output>
+                </form>
+                <div class="p-todo-status__estimate">
+                  <p class="c-input-label">見積:</p>
+                  <p class="c-input-time" name="estimateHour">10 h</p>
+                </div>
+                <div class="p-todo-status__result">
+                  <p class="c-input-label">実績:</p>
+                  <p class="c-input-time" name="resultHour">10 h</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="c-empty__last"></div>
+        </div>
+      </section>
+
+      <section class="p-listbox">
+        <div class="p-listbox-title">
+          <div class="c-inprogress-title-decoration1"></div>
+          <div class="c-inprogress-title-decoration2"></div>
+          <h2 class="c-list-name">In Progress</h2>
+        </div>
+        <div class="p-listbox-body__inprogress">
+          <div class="c-empty__before"></div>
+          <div class="p-todo">
+            <div class="p-todo-head__inprogress c-todo-head"></div>
+            <div class="c-todo-body">
+              <h3 class="c-todo-title">
+                タスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスク
+              </h3>
+              <p class="c-todo-content">内容</p>
+              <p class="c-todo-memo">メモ</p>
+              <div class="p-todo-status__times">
+                <div class="p-todo-status__createtime">
+                  <p class="c-time-label">created time:</p>
+                  <time class="c-datetime">xx/xx/xx xx:xx</time>
+                </div>
+                <div class="p-todo-status__starttime">
+                  <p class="c-time-label">started time:</p>
+                  <time class="c-datetime">xx/xx/xx xx:xx</time>
+                </div>
+              </div>
+              <div class="p-todo-status">
+                <form class="p-todo-status__progress">
+                  <input
+                    type="range"
+                    value="0"
+                    min="0"
+                    max="100"
+                    step="10"
+                    oninput="document.getElementById('c-output').value=this.value"
+                  />
+                  <output id="c-output">0</output>
+                </form>
+                <div class="p-todo-status__estimate">
+                  <p class="c-input-label">見積:</p>
+                  <p class="c-input-time" name="estimateHour">10 h</p>
+                </div>
+                <div class="p-todo-status__result">
+                  <p class="c-input-label">実績:</p>
+                  <p class="c-input-time" name="resultHour">10 h</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="c-empty__last"></div>
+        </div>
+      </section>
+
+      <section class="p-listbox">
+        <div class="p-listbox-title">
+          <div class="c-completed-title-decoration1"></div>
+          <div class="c-completed-title-decoration2"></div>
+          <h2 class="c-list-name">Completed</h2>
+        </div>
+        <div class="p-listbox-body__completed">
+          <div class="c-empty__before"></div>
+          <div class="p-todo">
+            <div class="p-todo-head__completed c-todo-head"></div>
+            <div class="c-todo-body">
+              <h3 class="c-todo-title">
+                タスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスク
+              </h3>
+              <p class="c-todo-content">内容</p>
+              <p class="c-todo-memo">メモ</p>
+              <div class="p-todo-status__times">
+                <div class="p-todo-status__createtime">
+                  <p class="c-time-label">created time:</p>
+                  <time class="c-datetime">xx/xx/xx xx:xx</time>
+                </div>
+                <div class="p-todo-status__starttime">
+                  <p class="c-time-label">started time:</p>
+                  <time class="c-datetime">xx/xx/xx xx:xx</time>
+                </div>
+              </div>
+              <div class="p-todo-status">
+                <form class="p-todo-status__progress">
+                  <input
+                    type="range"
+                    value="0"
+                    min="0"
+                    max="100"
+                    step="10"
+                    oninput="document.getElementById('c-output').value=this.value"
+                  />
+                  <output id="c-output">0</output>
+                </form>
+                <div class="p-todo-status__estimate">
+                  <p class="c-input-label">見積:</p>
+                  <p class="c-input-time" name="estimateHour">10 h</p>
+                </div>
+                <div class="p-todo-status__result">
+                  <p class="c-input-label">実績:</p>
+                  <p class="c-input-time" name="resultHour">10 h</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="c-empty__last"></div>
+        </div>
+      </section>
+
+      <section class="p-listbox">
+        <div class="p-listbox-title">
+          <div class="c-pending-title-decoration1"></div>
+          <div class="c-pending-title-decoration2"></div>
+          <h2 class="c-list-name">Pending</h2>
+        </div>
+        <div class="p-listbox-body__pending">
+          <div class="c-empty__before"></div>
+          <div class="p-todo">
+            <div class="p-todo-head__pending c-todo-head"></div>
+            <div class="c-todo-body">
+              <h3 class="c-todo-title">
+                タスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスク
+              </h3>
+              <p class="c-todo-content">内容</p>
+              <p class="c-todo-memo">メモ</p>
+              <div class="p-todo-status__times">
+                <div class="p-todo-status__createtime">
+                  <p class="c-time-label">created time:</p>
+                  <time class="c-datetime">xx/xx/xx xx:xx</time>
+                </div>
+                <div class="p-todo-status__starttime">
+                  <p class="c-time-label">started time:</p>
+                  <time class="c-datetime">xx/xx/xx xx:xx</time>
+                </div>
+              </div>
+              <div class="p-todo-status">
+                <form class="p-todo-status__progress">
+                  <input
+                    type="range"
+                    value="0"
+                    min="0"
+                    max="100"
+                    step="10"
+                    oninput="document.getElementById('c-output').value=this.value"
+                  />
+                  <output id="c-output">0</output>
+                </form>
+                <div class="p-todo-status__estimate">
+                  <p class="c-input-label">見積:</p>
+                  <p class="c-input-time" name="estimateHour">10 h</p>
+                </div>
+                <div class="p-todo-status__result">
+                  <p class="c-input-label">実績:</p>
+                  <p class="c-input-time" name="resultHour">10 h</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="c-empty__last"></div>
+        </div>
+      </section>
+    </section>
+
+    <aside id="l-side">
+      <div id="l-side-main">
+        <h3 class="c-side-label">sort top of list</h3>
+        <nav id="l-side-nav" class="p-nav">
+          <ul id="l-side-nav-list">
+            <li class="p-nav-button__waiting c-nav-button">
+              <p class="p-nav-label__waiting c-sort-label">Waiting</p>
+            </li>
+            <li class="p-nav-button__inprogress c-nav-button">
+              <p class="p-nav-label__inprogress c-sort-label">In Progress</p>
+            </li>
+            <li class="p-nav-button__completed c-nav-button">
+              <p class="p-nav-label__completed c-sort-label">Completed</p>
+            </li>
+            <li class="p-nav-button__pending c-nav-button">
+              <p class="p-nav-label__pending c-sort-label">Pending</p>
+            </li>
+          </ul>
+        </nav>
+
+        <div id="l-side-option">
+          <h3 class="c-side-label">option</h3>
+          <button class="p-fileout-button c-button-sub" type="button">
+            csv output
+          </button>
+        </div>
+      </div>
+      <div id="l-side-bar"><div id="l-side-bar-child">></div></div>
+    </aside>
+
+    <footer id="l-footer">
+      <div class="c-foot-decore"></div>
+      <div id="l-footer-inner">
+        <a class="c-svg-link" href="https://twitter.com/SYM_souten">
+          <object
+            class="c-svg"
+            type="image/svg+xml"
+            data="./images/twitter-icon2.svg"
+            width="19"
+            height="19"
+          ></object>
+        </a>
+        <a class="c-svg-link" href="https://github.com/Symthy/TodoList-ts-pre">
+          <object
+            class="c-svg"
+            type="image/svg+xml"
+            data="./images/mark-github.svg"
+            width="18"
+            height="18"
+          ></object>
+        </a>
+        <small>created by SYM 2020</small>
+      </div>
+    </footer>
   <script src="bundle.js"></script></body>
 </html>

@@ -20,6 +20,11 @@ module.exports = (env, argv) => {
     // モジュール設定
     module: {
       rules: [
+        // html
+        {
+          test: /\.html$/,
+          loader: "html-loader",
+        },
         // babel
         {
           test: /\.js$/,
@@ -96,10 +101,14 @@ module.exports = (env, argv) => {
             },
           ],
         },
-        // html
+        // 画像ファイル
         {
-          test: /\.html$/,
-          loader: "html-loader",
+          test: /\.(gif|png|jpg|eot|wof|woff|ttf|svg)$/,
+          // 画像を埋め込まず任意のフォルダに保存する
+          loader: "file-loader",
+          options: {
+            name: "./images/[name].[ext]",
+          },
         },
       ],
     },

@@ -1,0 +1,105 @@
+@import "../../foundation/variable.scss";
+
+.p-create-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 50px;
+  background-color: black;
+  color: white;
+  opacity: 0.7;
+
+  transition: all 0.6s ease 0s;
+  &:hover {
+    opacity: 0.8;
+    background-color: white;
+    color: black;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 0;
+    opacity: 0.7;
+    background: black;
+    transition: all 300ms ease;
+  }
+  &::before {
+    top: 0;
+    right: 0;
+  }
+  &::after {
+    //right: inherit;
+    //top: inherit;
+    left: 0;
+    bottom: 0;
+  }
+  &:hover::before,
+  &:hover:after {
+    width: 100%;
+    transition: all 600ms ease;
+  }
+}
+
+.p-fileout-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid black;
+  //box-shadow: 1px 1px 1px 1px #ccc;
+
+  transition: all 0.5s ease 0s;
+  &:hover {
+    opacity: 0.7;
+    background-color: black;
+    color: white;
+    border-bottom: 2px solid dimgray; // 影の代わり
+  }
+}
+
+[class*="p-nav-button__"] {
+  //transform: skewX(-10deg) scale(0.9, 0.9);
+  //box-shadow: 0 0 10px 5px #fff inset;
+  margin: 2px 3px;
+
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    left: -0.5%;
+    width: 100%;
+    height: 100%;
+    //transform: skewX(10deg) scale(1.1, 1);
+    border: 2px solid white;
+  }
+
+  transition: all 0.3s ease 0s;
+  &:hover {
+    opacity: 0.7;
+    background-color: white;
+  }
+}
+
+.p-nav-label__waiting {
+  background-color: $waitingTranslucentColor;
+  box-shadow: 0 0 15px 2px $waitingTranslucentColor, 0 0 10px 0px #fff inset;
+}
+
+.p-nav-label__inprogress {
+  background-color: $inprogressTranslucentColor;
+  box-shadow: 0 0 15px 2px $inprogressTranslucentColor, 0 0 10px 0px #fff inset;
+}
+
+.p-nav-label__completed {
+  background-color: $completedTranslucentColor;
+  box-shadow: 0 0 15px 2px $completedTranslucentColor, 0 0 10px 0px #fff inset;
+}
+
+.p-nav-label__pending {
+  background-color: $pendingTranslucentColor;
+  box-shadow: 0 0 15px 2px $pendingTranslucentColor, 0 0 10px 0px #fff inset;
+}

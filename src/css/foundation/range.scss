@@ -1,0 +1,41 @@
+input[type="range"] {
+  appearance: none;
+  cursor: pointer;
+  outline: none; //スライダーのアウトライン消す
+  height: 5px; // バーの高さ
+  width: 100%; // バーの幅
+  border-radius: 6px; //バーの両端の丸み
+  background: lightsteelblue; //バーの背景色
+  border: solid 3px lavender; //バー周囲の線
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}
+
+/* WebKit向けのつまみ */
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  display: block;
+  background: midnightblue; /* 背景色 */
+  width: 10px; /* 幅 */
+  height: 12px; /* 高さ */
+  border-radius: 50%; /* 円形に */
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.15); /* 影 */
+}
+/* Moz向けのつまみ */
+input[type="range"]::-moz-range-thumb {
+  appearance: none;
+  display: block;
+  background: midnightblue; /* 背景色 */
+  width: 10px; /* 幅 */
+  height: 15px; /* 高さ */
+  border-radius: 50%; /* 円形に */
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.15); /* 影 */
+  border: none; /* デフォルトの線を消す */
+}
+/* Firefoxで点線が周りに表示されてしまう問題の解消 */
+input[type="range"]::-moz-focus-outer {
+  border: 0;
+}

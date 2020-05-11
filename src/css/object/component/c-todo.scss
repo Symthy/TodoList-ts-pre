@@ -1,0 +1,113 @@
+@import "../../foundation/variable.scss";
+
+/*
+ * todo list box
+ */
+.c-list-name {
+  font-size: 20px;
+  margin: auto 2px;
+}
+
+[class*="-title-decoration1"] {
+  position: relative;
+  width: 15px;
+  margin-right: 10px;
+
+  &::after {
+    // 後ろに三角形追加
+    position: absolute;
+    left: 10px;
+    content: "";
+    width: 10px;
+    height: 50px;
+    transform: skewX(-10deg);
+  }
+}
+[class*="-title-decoration2"] {
+  width: 5px;
+  margin-right: 5px;
+  transform: skewX(-10deg);
+}
+
+[class*="c-waiting-title-decoration"] {
+  background-color: $waitingColor;
+  &::after {
+    background-color: $waitingColor;
+  }
+}
+[class*="c-inprogress-title-decoration"] {
+  background-color: $inprogressColor;
+  &::after {
+    background-color: $inprogressColor;
+  }
+}
+[class*="c-completed-title-decoration"] {
+  background-color: $completedColor;
+  &::after {
+    background-color: $completedColor;
+  }
+}
+[class*="c-pending-title-decoration"] {
+  background-color: $pendingColor;
+  &::after {
+    background-color: $pendingColor;
+  }
+}
+
+/*
+ * todo block
+ */
+.c-todo-head {
+  margin: auto;
+  width: 10px;
+  height: 40px;
+}
+
+.c-todo-title {
+  background-color: $baseColor;
+  font-size: 14px;
+  margin: 11px 1px 2px 1px;
+}
+
+.c-todo-content {
+  display: none;
+}
+
+.c-todo-memo {
+  display: none;
+}
+
+.c-input-label {
+  font-size: 12px;
+  margin: auto 0;
+}
+
+.c-input-time {
+  font-size: 12px;
+  margin: auto 0;
+}
+
+.c-time-label {
+  margin: auto 0;
+}
+
+.c-datetime {
+  margin: auto 0;
+}
+
+#c-output {
+  font-size: 12px;
+}
+
+/*
+ * todo empty
+ */
+.c-empty__before {
+  height: 12px;
+  margin: 0 15px;
+}
+
+.c-empty__last {
+  height: 12px;
+  margin: 0 15px;
+}
