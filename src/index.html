@@ -16,8 +16,8 @@
     />
   </head>
 
-  <body id="l-base">
-    <header id="l-header">
+  <body class="ly-base">
+    <header class="ly-header">
       <div class="c-head-decore1"></div>
       <div class="c-head-decore2"></div>
       <h1 class="c-head-label">Todo List Mini</h1>
@@ -26,7 +26,7 @@
       </button>
     </header>
 
-    <section id="l-todolist">
+    <section class="ly-todolist">
       <section class="p-listbox">
         <div class="p-listbox-title">
           <div class="c-waiting-title-decoration1"></div>
@@ -240,39 +240,43 @@
       </section>
     </section>
 
-    <aside id="l-side">
-      <div id="l-side-main">
-        <h3 class="c-side-label">sort top of list</h3>
-        <nav id="l-side-nav" class="p-nav">
-          <ul id="l-side-nav-list">
-            <li class="p-nav-button__waiting c-nav-button">
-              <p class="p-nav-label__waiting c-sort-label">Waiting</p>
+    <aside class="ly_side">
+      <div class="ly_side_main">
+        <h3 class="el_label hp_ml15">sort top of list</h3>
+        <nav class="ly_side_nav">
+          <ul class="bl_btnUnit">
+            <li class="el_navBtn">
+              <p class="el_sortLabel el_sortLabel__blue">Waiting</p>
             </li>
-            <li class="p-nav-button__inprogress c-nav-button">
-              <p class="p-nav-label__inprogress c-sort-label">In Progress</p>
+            <li class="el_navBtn">
+              <p class="el_sortLabel el_sortLabel__green">In Progress</p>
             </li>
-            <li class="p-nav-button__completed c-nav-button">
-              <p class="p-nav-label__completed c-sort-label">Completed</p>
+            <li class="el_navBtn">
+              <p class="el_sortLabel el_sortLabel__red">Completed</p>
             </li>
-            <li class="p-nav-button__pending c-nav-button">
-              <p class="p-nav-label__pending c-sort-label">Pending</p>
+            <li class="el_navBtn">
+              <p class="el_sortLabel el_sortLabel__yellow">Pending</p>
             </li>
           </ul>
         </nav>
 
-        <div id="l-side-option">
-          <h3 class="c-side-label">option</h3>
-          <button class="p-fileout-button c-button-sub" type="button">
-            csv output
-          </button>
+        <div class="ly_side_option">
+          <h3 class="el_label hp_ml15">option</h3>
+          <div class="bl_btnUnit">
+            <button class="el_btn" type="button">
+              csv output
+            </button>
+          </div>
         </div>
       </div>
-      <div id="l-side-bar"><div id="l-side-bar-child">></div></div>
+      <div class="ly_sideBar">
+        <span class="el_barIcon el_barIcon__shrink">></span>
+      </div>
     </aside>
 
-    <footer id="l-footer">
+    <footer class="ly_footer">
       <div class="c-foot-decore"></div>
-      <div id="l-footer-inner">
+      <div class="ly_footerInner">
         <a class="c-svg-link" href="https://twitter.com/SYM_souten">
           <object
             class="c-svg"

@@ -1,0 +1,80 @@
+.el-title {
+  font-size: 1.2em;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.el_label {
+  font-size: 1em;
+  &.el_label__big {
+    font-size: 1.125em;
+  }
+}
+
+// button
+.el_btn {
+  border-radius: 5px;
+  width: 120px;
+  height: 25px;
+  font-size: 0.875em;
+  box-shadow: 1px 1px 2px 0.5px rgba(0, 0, 0, 0.25);
+  background-color: white;
+  border: 1px solid black;
+  transition: all 0.3s ease 0s;
+  &:hover,
+  &:focus {
+    opacity: 0.7;
+    background-color: black;
+    color: white;
+  }
+}
+
+.el_navBtn {
+  position: relative;
+
+  width: 95%;
+  height: 100%;
+  margin: 1px 0;
+  border: 3px double white;
+  background-color: darken($baseColor, 1%);
+  transition: all 0.3s ease 0s;
+  &:hover,
+  &:focus {
+    opacity: 0.6;
+    background-color: saturate($baseColor, 50%);
+  }
+}
+
+.el_barIcon {
+  // インライン中央寄せ
+  display: table-cell;
+  vertical-align: middle;
+
+  &.el_barIcon__shrink {
+    transform: scaleX(0.5);
+  }
+  &:hover,
+  &:focus {
+    cursor: pointer;
+  }
+}
+
+.el_sortLabel {
+  width: 70%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -130%) skew(-10deg);
+  white-space: nowrap;
+}
+.el_sortLabel.el_sortLabel__blue {
+  @include sortBtnLabelStyle($waitingColor);
+}
+.el_sortLabel.el_sortLabel__green {
+  @include sortBtnLabelStyle($inprogressColor);
+}
+.el_sortLabel.el_sortLabel__red {
+  @include sortBtnLabelStyle($completedColor);
+}
+.el_sortLabel.el_sortLabel__yellow {
+  @include sortBtnLabelStyle($pendingColor);
+}

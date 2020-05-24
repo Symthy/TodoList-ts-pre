@@ -1,23 +1,15 @@
-@import "../foundation/variable.scss";
+@import "../base/definition.scss";
+@import "../original/responsive/flex.scss";
 
-$headerHeight: 75px;
-$footerHeight: 25px;
+// .l-mainArea {
+//   フッタ最下部固定
+//   todolistの高さ = 100vh - header+footerの高さ
+//   min-height: calc(100vh - 100px);
+// }
 
-.l-mainArea {
-  //フッタ最下部固定
-  // todolistの高さ = 100vh - header+footerの高さ
-  //min-height: calc(100vh - 100px);
-}
-
-.l-flex-column {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-#l-base {
+.ly-base {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   display: grid;
   // grid-template-areas:
   //   "head head"
@@ -27,7 +19,7 @@ $footerHeight: 25px;
   grid-template-columns: 160px 1fr;
 }
 
-#l-header {
+.ly-header {
   //grid-area: "head";
   grid-row: 1;
   grid-column: 1 / span 2;
@@ -35,10 +27,10 @@ $footerHeight: 25px;
   position: relative;
 }
 
-#l-todolist {
+.ly-todolist {
   position: relative;
-  z-index: 1;
-  @extend .l-mainArea;
+  z-index: 3;
+  //@extend .l-mainArea;
   //grid-area: "main";
   grid-row: 2;
   grid-column: 2;
@@ -47,70 +39,53 @@ $footerHeight: 25px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  //justify-content: center;
-
-  .l-todo {
-  }
 }
 
-#l-side {
+.ly_side {
   //grid-area: "side";
   grid-row: 2 / span 3;
   grid-column: 1;
   display: flex;
-
   background-color: $baseColor;
 
-  #l-side-main {
+  .ly_side_main {
     flex-basis: 15/16 * 100%;
     box-shadow: -5px 12px 10px 10px rgba(105, 105, 105, 0.2);
-    @extend .l-flex-column;
+    @extend .fl_columnLeft;
 
-    #l-side-nav {
+    .ly_side_nav {
       flex-grow: 7;
-
-      #l-side-nav-list {
-        height: 100%;
-        text-align: center;
-        @extend .l-flex-column;
-      }
     }
 
-    #l-side-option {
-      position: relative;
+    .ly_side_option {
       flex-grow: 5;
+      @extend .fl_columnLeft;
     }
   }
 
-  #l-side-bar {
+  .ly_sideBar {
     flex-basis: 1/16 * 100%;
-    width: 5%;
-
-    position: relative;
-    #l-side-bar-child {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%) scaleX(0.5);
-    }
+    // インライン中央寄せ
+    display: table;
+    height: 100%;
   }
 }
 
-#l-footer {
-  // footer最下配置
-  position: sticky;
-  top: 100%;
-
-  padding: 0 5px;
+// footer
+.ly_footer {
   //grid-area: "foot";
   grid-row: 3;
   grid-column: 2;
-  #l-footer-inner {
-    position: relative;
-    z-index: 1;
-    // flex setting: 縦中央/右寄せ
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  }
+  // footer最下配置
+  position: absolute;
+  bottom: 0%;
+  right: 0%;
+  z-index: 2;
+  padding: 0 5px;
+}
+.ly_footerInner {
+  position: relative;
+  z-index: 3;
+  // flex setting: 縦中央/右寄せ
+  @extend .fl_rowEnd;
 }

@@ -1,0 +1,8 @@
+.bl_btnUnit {
+  height: 100%;
+  @extend .fl_columnCenter;
+
+  & > .el_navBtn {
+    text-align: center;
+  }
+}

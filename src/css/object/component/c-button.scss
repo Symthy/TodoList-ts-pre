@@ -3,25 +3,3 @@
   width: 150px;
   height: 30px;
 }
-
-.c-button-sub {
-  border-radius: 5px;
-  width: 120px;
-  height: 25px;
-  font-size: 14px;
-}
-
-.c-nav-button {
-  height: 100%;
-
-  position: relative;
-  .c-sort-label {
-    width: 60%;
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -130%) skew(-10deg);
-    white-space: nowrap;
-  }
-}
