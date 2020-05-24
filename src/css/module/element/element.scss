@@ -1,13 +1,62 @@
-.el-title {
-  font-size: 1.2em;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+@import "../../program/state/state.scss";
+
+// label
+.el_title {
+  font-size: 1.25em;
+  text-shadow: 1px 1px 1px rgba(black, 0.2);
+  margin: auto 3px;
+
+  &.el_title_large {
+    font-size: 1.25em;
+  }
+}
+
+.el_todoTitle {
+  background-color: $baseColor;
+  font-size: 0.875em; // 14
+  margin: 11px 3px 2px 3px;
+}
+
+.el_todo_head {
+  margin: auto;
+  width: 12px;
+  height: 80%;
 }
 
 .el_label {
-  font-size: 1em;
-  &.el_label__big {
-    font-size: 1.125em;
+  font-size: 1em; // 16
+  margin: auto; // 中央配置
+  &.el_label__large {
+    font-size: 1.125em; // 18
   }
+  &.el_label__small {
+    font-size: 0.75em; // 12
+  }
+  &.el_label__xxsmall {
+    font-size: xx-small;
+    color: gray;
+  }
+}
+
+.el_sortLabel {
+  width: 70%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -130%) skew(-10deg);
+  white-space: nowrap;
+}
+.el_sortLabel.el_sortLabel__blue {
+  @include sortBtnLabelStyle($waitingColor);
+}
+.el_sortLabel.el_sortLabel__green {
+  @include sortBtnLabelStyle($inprogressColor);
+}
+.el_sortLabel.el_sortLabel__red {
+  @include sortBtnLabelStyle($completedColor);
+}
+.el_sortLabel.el_sortLabel__yellow {
+  @include sortBtnLabelStyle($pendingColor);
 }
 
 // button
@@ -44,6 +93,7 @@
   }
 }
 
+// simbol
 .el_barIcon {
   // インライン中央寄せ
   display: table-cell;
@@ -58,23 +108,55 @@
   }
 }
 
-.el_sortLabel {
-  width: 70%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -130%) skew(-10deg);
-  white-space: nowrap;
+.el_decoreFirst {
+  position: relative;
+  width: 15px;
+  margin-right: 10px;
+
+  &::after {
+    // 後ろに三角形追加
+    position: absolute;
+    left: 10px;
+    content: "";
+    width: 10px;
+    height: 50px;
+    transform: skewX(-10deg);
+  }
 }
-.el_sortLabel.el_sortLabel__blue {
-  @include sortBtnLabelStyle($waitingColor);
+
+.el_decoreFirst.is_waiting {
+  @extend .is_waiting;
+  &::after {
+    @extend .is_waiting;
+  }
 }
-.el_sortLabel.el_sortLabel__green {
-  @include sortBtnLabelStyle($inprogressColor);
+.el_decoreFirst.is_inprogress {
+  @extend .is_inprogress;
+  &::after {
+    @extend .is_inprogress;
+  }
 }
-.el_sortLabel.el_sortLabel__red {
-  @include sortBtnLabelStyle($completedColor);
+.el_decoreFirst.is_completed {
+  @extend .is_completed;
+  &::after {
+    @extend .is_completed;
+  }
 }
-.el_sortLabel.el_sortLabel__yellow {
-  @include sortBtnLabelStyle($pendingColor);
+.el_decoreFirst.is_pending {
+  @extend .is_pending;
+  &::after {
+    @extend .is_pending;
+  }
+}
+
+.el_decoreSecond {
+  width: 5px;
+  margin-right: 5px;
+  transform: skewX(-10deg);
+}
+
+// empty
+.el_emptyItem {
+  height: 12px;
+  margin: 0 15px;
 }

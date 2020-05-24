@@ -27,222 +27,264 @@
     </header>
 
     <section class="ly-todolist">
-      <section class="p-listbox">
-        <div class="p-listbox-title">
-          <div class="c-waiting-title-decoration1"></div>
-          <div class="c-waiting-title-decoration2"></div>
-          <h2 class="c-list-name">Waiting</h2>
-        </div>
-        <div class="p-listbox-body__waiting">
-          <div class="c-empty__before"></div>
-          <div class="p-todo">
-            <div class="p-todo-head__waiting c-todo-head"></div>
-            <div class="c-todo-body">
-              <h3 class="c-todo-title">
-                タスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスク
-              </h3>
-              <p class="c-todo-content">内容</p>
-              <p class="c-todo-memo">メモ</p>
-              <div class="p-todo-status__times">
-                <div class="p-todo-status__createtime">
-                  <p class="c-time-label">created time:</p>
-                  <time class="c-datetime">xx/xx/xx xx:xx</time>
-                </div>
-                <div class="p-todo-status__starttime">
-                  <p class="c-time-label">started time:</p>
-                  <time class="c-datetime">xx/xx/xx xx:xx</time>
-                </div>
-              </div>
-              <div class="p-todo-status">
-                <form class="p-todo-status__progress">
-                  <input
-                    type="range"
-                    value="0"
-                    min="0"
-                    max="100"
-                    step="10"
-                    oninput="document.getElementById('c-output').value=this.value"
-                  />
-                  <output id="c-output">0</output>
-                </form>
-                <div class="p-todo-status__estimate">
-                  <p class="c-input-label">見積:</p>
-                  <p class="c-input-time" name="estimateHour">10 h</p>
-                </div>
-                <div class="p-todo-status__result">
-                  <p class="c-input-label">実績:</p>
-                  <p class="c-input-time" name="resultHour">10 h</p>
-                </div>
-              </div>
-            </div>
+      <div class="bl_todolistUnit">
+        <section class="bl_todolist">
+          <div class="bl_todolist_title">
+            <div class="el_decoreFirst is_waiting"></div>
+            <div class="el_decoreSecond is_waiting"></div>
+            <h2 class="el_title">Waiting</h2>
           </div>
-          <div class="c-empty__last"></div>
-        </div>
-      </section>
+          <div class="bl_todolist_body is_waiting">
+            <div class="el_emptyItem"></div>
 
-      <section class="p-listbox">
-        <div class="p-listbox-title">
-          <div class="c-inprogress-title-decoration1"></div>
-          <div class="c-inprogress-title-decoration2"></div>
-          <h2 class="c-list-name">In Progress</h2>
-        </div>
-        <div class="p-listbox-body__inprogress">
-          <div class="c-empty__before"></div>
-          <div class="p-todo">
-            <div class="p-todo-head__inprogress c-todo-head"></div>
-            <div class="c-todo-body">
-              <h3 class="c-todo-title">
-                タスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスク
-              </h3>
-              <p class="c-todo-content">内容</p>
-              <p class="c-todo-memo">メモ</p>
-              <div class="p-todo-status__times">
-                <div class="p-todo-status__createtime">
-                  <p class="c-time-label">created time:</p>
-                  <time class="c-datetime">xx/xx/xx xx:xx</time>
+            <div class="bl_todo hp_mrl15 hp_prl2">
+              <div class="el_todo_head is_waiting"></div>
+              <div class="bl_todo_body">
+                <h3 class="el_todoTitle">
+                  タスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスク
+                </h3>
+                <div class="bl_todo_times">
+                  <div class="bl_todo_time">
+                    <p class="el_label el_label__xxsmall">created time:</p>
+                    <time class="el_label el_label__xxsmall"
+                      >xx/xx/xx xx:xx</time
+                    >
+                  </div>
+                  <div class="bl_todo_time">
+                    <p class="el_label el_label__xxsmall">started time:</p>
+                    <time class="el_label el_label__xxsmall"
+                      >xx/xx/xx xx:xx</time
+                    >
+                  </div>
                 </div>
-                <div class="p-todo-status__starttime">
-                  <p class="c-time-label">started time:</p>
-                  <time class="c-datetime">xx/xx/xx xx:xx</time>
-                </div>
-              </div>
-              <div class="p-todo-status">
-                <form class="p-todo-status__progress">
-                  <input
-                    type="range"
-                    value="0"
-                    min="0"
-                    max="100"
-                    step="10"
-                    oninput="document.getElementById('c-output').value=this.value"
-                  />
-                  <output id="c-output">0</output>
-                </form>
-                <div class="p-todo-status__estimate">
-                  <p class="c-input-label">見積:</p>
-                  <p class="c-input-time" name="estimateHour">10 h</p>
-                </div>
-                <div class="p-todo-status__result">
-                  <p class="c-input-label">実績:</p>
-                  <p class="c-input-time" name="resultHour">10 h</p>
+                <div class="bl_todo_status">
+                  <form class="bl_todo_progress">
+                    <input
+                      type="range"
+                      value="0"
+                      min="0"
+                      max="100"
+                      step="10"
+                      oninput="document.getElementById('c-output').value=this.value"
+                    />
+                    <output id="c-output" class="el_label el_label__small"
+                      >0</output
+                    >
+                  </form>
+                  <div class="bl_todo_inputTime">
+                    <p class="el_label el_label__small">見積:</p>
+                    <p class="el_label el_label__small" name="estimateHour">
+                      10 h
+                    </p>
+                  </div>
+                  <div class="bl_todo_inputTime">
+                    <p class="el_label el_label__small">実績:</p>
+                    <p class="el_label el_label__small" name="resultHour">
+                      10 h
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="c-empty__last"></div>
-        </div>
-      </section>
 
-      <section class="p-listbox">
-        <div class="p-listbox-title">
-          <div class="c-completed-title-decoration1"></div>
-          <div class="c-completed-title-decoration2"></div>
-          <h2 class="c-list-name">Completed</h2>
-        </div>
-        <div class="p-listbox-body__completed">
-          <div class="c-empty__before"></div>
-          <div class="p-todo">
-            <div class="p-todo-head__completed c-todo-head"></div>
-            <div class="c-todo-body">
-              <h3 class="c-todo-title">
-                タスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスク
-              </h3>
-              <p class="c-todo-content">内容</p>
-              <p class="c-todo-memo">メモ</p>
-              <div class="p-todo-status__times">
-                <div class="p-todo-status__createtime">
-                  <p class="c-time-label">created time:</p>
-                  <time class="c-datetime">xx/xx/xx xx:xx</time>
-                </div>
-                <div class="p-todo-status__starttime">
-                  <p class="c-time-label">started time:</p>
-                  <time class="c-datetime">xx/xx/xx xx:xx</time>
-                </div>
-              </div>
-              <div class="p-todo-status">
-                <form class="p-todo-status__progress">
-                  <input
-                    type="range"
-                    value="0"
-                    min="0"
-                    max="100"
-                    step="10"
-                    oninput="document.getElementById('c-output').value=this.value"
-                  />
-                  <output id="c-output">0</output>
-                </form>
-                <div class="p-todo-status__estimate">
-                  <p class="c-input-label">見積:</p>
-                  <p class="c-input-time" name="estimateHour">10 h</p>
-                </div>
-                <div class="p-todo-status__result">
-                  <p class="c-input-label">実績:</p>
-                  <p class="c-input-time" name="resultHour">10 h</p>
-                </div>
-              </div>
-            </div>
+            <div class="el_emptyItem"></div>
           </div>
-          <div class="c-empty__last"></div>
-        </div>
-      </section>
+        </section>
 
-      <section class="p-listbox">
-        <div class="p-listbox-title">
-          <div class="c-pending-title-decoration1"></div>
-          <div class="c-pending-title-decoration2"></div>
-          <h2 class="c-list-name">Pending</h2>
-        </div>
-        <div class="p-listbox-body__pending">
-          <div class="c-empty__before"></div>
-          <div class="p-todo">
-            <div class="p-todo-head__pending c-todo-head"></div>
-            <div class="c-todo-body">
-              <h3 class="c-todo-title">
-                タスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスク
-              </h3>
-              <p class="c-todo-content">内容</p>
-              <p class="c-todo-memo">メモ</p>
-              <div class="p-todo-status__times">
-                <div class="p-todo-status__createtime">
-                  <p class="c-time-label">created time:</p>
-                  <time class="c-datetime">xx/xx/xx xx:xx</time>
+        <section class="bl_todolist">
+          <div class="bl_todolist_title">
+            <div class="el_decoreFirst is_inprogress"></div>
+            <div class="el_decoreSecond is_inprogress"></div>
+            <h2 class="el_title">In Progress</h2>
+          </div>
+          <div class="bl_todolist_body is_inprogress">
+            <div class="el_emptyItem"></div>
+
+            <div class="bl_todo hp_mrl15 hp_prl2">
+              <div class="el_todo_head is_inprogress"></div>
+              <div class="bl_todo_body">
+                <h3 class="el_todoTitle">
+                  タスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスク
+                </h3>
+                <div class="bl_todo_times">
+                  <div class="bl_todo_time">
+                    <p class="el_label el_label__xxsmall">created time:</p>
+                    <time class="el_label el_label__xxsmall"
+                      >xx/xx/xx xx:xx</time
+                    >
+                  </div>
+                  <div class="bl_todo_time">
+                    <p class="el_label el_label__xxsmall">started time:</p>
+                    <time class="el_label el_label__xxsmall"
+                      >xx/xx/xx xx:xx</time
+                    >
+                  </div>
                 </div>
-                <div class="p-todo-status__starttime">
-                  <p class="c-time-label">started time:</p>
-                  <time class="c-datetime">xx/xx/xx xx:xx</time>
-                </div>
-              </div>
-              <div class="p-todo-status">
-                <form class="p-todo-status__progress">
-                  <input
-                    type="range"
-                    value="0"
-                    min="0"
-                    max="100"
-                    step="10"
-                    oninput="document.getElementById('c-output').value=this.value"
-                  />
-                  <output id="c-output">0</output>
-                </form>
-                <div class="p-todo-status__estimate">
-                  <p class="c-input-label">見積:</p>
-                  <p class="c-input-time" name="estimateHour">10 h</p>
-                </div>
-                <div class="p-todo-status__result">
-                  <p class="c-input-label">実績:</p>
-                  <p class="c-input-time" name="resultHour">10 h</p>
+                <div class="bl_todo_status">
+                  <form class="bl_todo_progress">
+                    <input
+                      type="range"
+                      value="0"
+                      min="0"
+                      max="100"
+                      step="10"
+                      oninput="document.getElementById('c-output').value=this.value"
+                    />
+                    <output id="c-output" class="el_label el_label__small"
+                      >0</output
+                    >
+                  </form>
+                  <div class="bl_todo_inputTime">
+                    <p class="el_label el_label__small">見積:</p>
+                    <p class="el_label el_label__small" name="estimateHour">
+                      10 h
+                    </p>
+                  </div>
+                  <div class="bl_todo_inputTime">
+                    <p class="el_label el_label__small">実績:</p>
+                    <p class="el_label el_label__small" name="resultHour">
+                      10 h
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
+
+            <div class="el_emptyItem"></div>
           </div>
-          <div class="c-empty__last"></div>
-        </div>
-      </section>
+        </section>
+
+        <section class="bl_todolist">
+          <div class="bl_todolist_title">
+            <div class="el_decoreFirst is_completed"></div>
+            <div class="el_decoreSecond is_completed"></div>
+            <h2 class="el_title">Completed</h2>
+          </div>
+          <div class="bl_todolist_body is_completed">
+            <div class="el_emptyItem"></div>
+
+            <div class="bl_todo hp_mrl15 hp_prl2">
+              <div class="el_todo_head is_completed"></div>
+              <div class="bl_todo_body">
+                <h3 class="el_todoTitle">
+                  タスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスク
+                </h3>
+                <div class="bl_todo_times">
+                  <div class="bl_todo_time">
+                    <p class="el_label el_label__xxsmall">created time:</p>
+                    <time class="el_label el_label__xxsmall"
+                      >xx/xx/xx xx:xx</time
+                    >
+                  </div>
+                  <div class="bl_todo_time">
+                    <p class="el_label el_label__xxsmall">started time:</p>
+                    <time class="el_label el_label__xxsmall"
+                      >xx/xx/xx xx:xx</time
+                    >
+                  </div>
+                </div>
+                <div class="bl_todo_status">
+                  <form class="bl_todo_progress">
+                    <input
+                      type="range"
+                      value="0"
+                      min="0"
+                      max="100"
+                      step="10"
+                      oninput="document.getElementById('c-output').value=this.value"
+                    />
+                    <output id="c-output" class="el_label el_label__small"
+                      >0</output
+                    >
+                  </form>
+                  <div class="bl_todo_inputTime">
+                    <p class="el_label el_label__small">見積:</p>
+                    <p class="el_label el_label__small" name="estimateHour">
+                      10 h
+                    </p>
+                  </div>
+                  <div class="bl_todo_inputTime">
+                    <p class="el_label el_label__small">実績:</p>
+                    <p class="el_label el_label__small" name="resultHour">
+                      10 h
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="el_emptyItem"></div>
+          </div>
+        </section>
+
+        <section class="bl_todolist">
+          <div class="bl_todolist_title">
+            <div class="el_decoreFirst is_pending"></div>
+            <div class="el_decoreSecond is_pending"></div>
+            <h2 class="el_title">Pending</h2>
+          </div>
+          <div class="bl_todolist_body is_pending">
+            <div class="el_emptyItem"></div>
+
+            <div class="bl_todo hp_mrl15 hp_prl2">
+              <div class="el_todo_head is_pending"></div>
+              <div class="bl_todo_body">
+                <h3 class="el_todoTitle">
+                  タスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスクタスク
+                </h3>
+                <div class="bl_todo_times">
+                  <div class="bl_todo_time">
+                    <p class="el_label el_label__xxsmall">created time:</p>
+                    <time class="el_label el_label__xxsmall"
+                      >xx/xx/xx xx:xx</time
+                    >
+                  </div>
+                  <div class="bl_todo_time">
+                    <p class="el_label el_label__xxsmall">started time:</p>
+                    <time class="el_label el_label__xxsmall"
+                      >xx/xx/xx xx:xx</time
+                    >
+                  </div>
+                </div>
+                <div class="bl_todo_status">
+                  <form class="bl_todo_progress">
+                    <input
+                      type="range"
+                      value="0"
+                      min="0"
+                      max="100"
+                      step="10"
+                      oninput="document.getElementById('c-output').value=this.value"
+                    />
+                    <output id="c-output" class="el_label el_label__small"
+                      >0</output
+                    >
+                  </form>
+                  <div class="bl_todo_inputTime">
+                    <p class="el_label el_label__small">見積:</p>
+                    <p class="el_label el_label__small" name="estimateHour">
+                      10 h
+                    </p>
+                  </div>
+                  <div class="bl_todo_inputTime">
+                    <p class="el_label el_label__small">実績:</p>
+                    <p class="el_label el_label__small" name="resultHour">
+                      10 h
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="el_emptyItem"></div>
+          </div>
+        </section>
+      </div>
     </section>
 
     <aside class="ly_side">
       <div class="ly_side_main">
-        <h3 class="el_label hp_ml15">sort top of list</h3>
+        <h3 class="el_label hp_ml10 hp_mtb15">sort top of list</h3>
         <nav class="ly_side_nav">
           <ul class="bl_btnUnit">
             <li class="el_navBtn">
@@ -261,7 +303,7 @@
         </nav>
 
         <div class="ly_side_option">
-          <h3 class="el_label hp_ml15">option</h3>
+          <h3 class="el_label hp_ml10 hp_mtb15">option</h3>
           <div class="bl_btnUnit">
             <button class="el_btn" type="button">
               csv output
