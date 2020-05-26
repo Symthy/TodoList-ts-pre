@@ -1,11 +1,5 @@
-.c-head-label {
-  position: relative;
-  z-index: 3;
-  padding-left: 5px;
-}
-.c-head-decore1 {
+.un_headOne {
   position: absolute;
-  z-index: 1;
   left: 0;
   top: 0;
 
@@ -20,9 +14,8 @@
   );
   clip-path: polygon(0 0, 0 100%, 100% 0);
 }
-.c-head-decore2 {
+.un_headTwo {
   position: absolute;
-  z-index: 2;
   left: 33px;
   top: 0;
 
@@ -33,9 +26,8 @@
   transform: skewX(-36.5deg);
 }
 
-.c-foot-decore {
+.un_foot {
   position: absolute;
-  z-index: 1;
   right: 0;
   bottom: 0;
 

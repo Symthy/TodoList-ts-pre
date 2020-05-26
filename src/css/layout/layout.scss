@@ -8,8 +8,6 @@
 // }
 
 .ly-base {
-  position: relative;
-  z-index: 1;
   display: grid;
   // grid-template-areas:
   //   "head head"
@@ -29,7 +27,6 @@
 
 .ly-todolist {
   position: relative;
-  z-index: 3;
   //grid-area: "main";
   grid-row: 2;
   grid-column: 2;
@@ -41,7 +38,6 @@
   grid-column: 1;
   display: flex;
   background-color: $baseColor;
-
   .ly_side_main {
     flex-basis: 15/16 * 100%;
     box-shadow: -5px 12px 10px 10px rgba(105, 105, 105, 0.2);
@@ -71,15 +67,15 @@
   grid-row: 3;
   grid-column: 2;
   // footer最下配置
-  position: absolute;
-  bottom: 0%;
-  right: 0%;
-  z-index: 2;
+  position: fixed;
+  bottom: 0;
+  right: 0;
   padding: 0 5px;
+  background: linear-gradient(90deg, #f8f8ff, 50%, #e8e8ff);
 }
 .ly_footerInner {
   position: relative;
-  z-index: 3;
+  height: 25px;
   // flex setting: 縦中央/右寄せ
   @extend .fl_rowEnd;
 }
