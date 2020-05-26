@@ -1,0 +1,109 @@
+@import "../../base/definition.scss";
+@import "../../original/responsive/flex.scss";
+
+.bl_todolistUnit {
+  @extend .fl_columnCenter;
+  & > .bl_todolist {
+    width: 95%;
+    margin-bottom: 15px;
+    &:last-child {
+      margin-bottom: 0px;
+    }
+  }
+}
+
+.bl_todolist {
+  background-color: white;
+  & > .bl_todolist_title {
+    height: 50px;
+  }
+}
+
+.bl_todolist_title {
+  border: 1px solid #ccc;
+  display: flex;
+}
+
+.bl_todolist_body {
+  box-shadow: 1px 1px 2px 1.5px rgba(black, 0.1) inset,
+    -1px -1px 2px 0.5px rgba(black, 0.1) inset;
+}
+.bl_todolist_body.is_waiting {
+  background-color: translucentColor($waitingColor, 0.1);
+}
+.bl_todolist_body.is_inprogress {
+  background-color: translucentColor($inprogressColor, 0.1);
+}
+
+.bl_todolist_body.is_completed {
+  background-color: translucentColor($completedColor, 0.1);
+}
+
+.bl_todolist_body.is_pending {
+  background-color: translucentColor($pendingColor, 0.1);
+}
+
+.bl_todo {
+  background-color: white;
+  border-radius: 5px;
+
+  $shadow_x: -2px 2px;
+  $shadow_y: -2px 2px;
+  $shadow_grd: 5px 5px;
+  $shadow_color: white rgba(black, 0.2);
+  box-shadow: zip($shadow_x, $shadow_y, $shadow_grd, $shadow_color);
+
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 35fr;
+
+  transition: all 0.3s ease;
+  &:hover,
+  &:focus {
+    opacity: 0.8;
+  }
+
+  position: relative;
+  .bl_todo_times {
+    position: absolute;
+    top: -1px;
+    right: 2px;
+  }
+}
+
+.bl_todo_body {
+  & > .bl_todo_status {
+    height: 20px;
+  }
+}
+
+.bl_todo_status {
+  display: flex;
+  justify-content: space-around;
+  & > .bl_todo_progress {
+    margin-top: 5px;
+  }
+}
+
+.bl_todo_progress {
+  display: flex;
+}
+
+.bl_todo_times {
+  display: flex;
+
+  .bl_todo_time {
+    display: flex;
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+    &:last-child {
+      margin-right: 5px;
+    }
+  }
+}
+
+.bl_todo_inputTime {
+  display: flex;
+}

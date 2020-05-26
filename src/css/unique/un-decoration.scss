@@ -1,0 +1,44 @@
+.un_headOne {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 45px;
+  height: 60px;
+  background: linear-gradient(
+    to top left,
+    #f8f8ff,
+    #f8f8ff 50%,
+    #f0f0ff 80%,
+    #e8e8ff 100%
+  );
+  clip-path: polygon(0 0, 0 100%, 100% 0);
+}
+.un_headTwo {
+  position: absolute;
+  left: 33px;
+  top: 0;
+
+  width: 15px;
+  height: 65px;
+  background-color: $baseColor;
+  clip-path: polygon(0 0, 0 100%, 100% 0);
+  transform: skewX(-36.5deg);
+}
+
+.un_foot {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  width: 210px;
+  height: 280px;
+  background: linear-gradient(
+    to bottom right,
+    #f8f8ff,
+    #f8f8ff 50%,
+    #f0f0ff 80%,
+    #e8e8ff 100%
+  );
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
+}

@@ -1,0 +1,17 @@
+@import "../../base/definition.scss";
+
+.is_waiting {
+  background-color: $waitingColor;
+}
+
+.is_inprogress {
+  background-color: $inprogressColor;
+}
+
+.is_completed {
+  background-color: $completedColor;
+}
+
+.is_pending {
+  background-color: $pendingColor;
+}
