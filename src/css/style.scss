@@ -13,13 +13,15 @@
 /*
  * Module Group - Block
  */
-@import "./module/block/bl-todo";
-@import "./module/block/bl-button";
+@import "./module/block/bl-todo.scss";
+@import "./module/block/bl-btn.scss";
 
 /*
  * Module Group - Element
  */
-@import "./module/element/element.scss";
+@import "./module/element/el-btn.scss";
+@import "./module/element/el-label.scss";
+@import "./module/element/el-decore.scss";
 
 /*
  * Helper Group
