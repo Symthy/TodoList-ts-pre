@@ -1,13 +1,27 @@
 {
-  "rulesDirectory": ["tslint-plugin-prettier"],
-  "extends": ["tslint-config-standard", "tslint-config-prettier"],
+  "rulesDirectory": [
+    "tslint-plugin-prettier"
+  ],
+  "extends": [
+    "tslint-config-standard",
+    "tslint-config-prettier"
+  ],
   "rules": {
     "prettier": [
       true,
       {
-        "singleQuote": false,
+        "singleQuote": true,
         "semi": true
       }
     ]
-  }
+  },
+  "max-line-length": [
+    true,
+    {
+      "limit": 120,
+      "ignore-pattern": "^import |^export {(.*?)}",
+      "check-strings": true,
+      "check-regex": true
+    }
+  ]
 }

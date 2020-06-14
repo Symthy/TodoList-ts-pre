@@ -11,8 +11,19 @@
     "allowUnusedLabels": false,
     "removeComments": true,
     "moduleResolution": "node",
-    "lib": ["es5", "es6", "es7", "dom"]
+    "experimentalDecorators": true, // enable decorator
+    "downlevelIteration": true,
+    "lib": [
+      "es5",
+      "es6",
+      "es7",
+      "dom"
+    ]
   },
-  "include": ["./src/ts/**/*"],
-  "exclude": ["node_modules"]
+  "include": [
+    "./src/ts/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

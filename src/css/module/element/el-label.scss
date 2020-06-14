@@ -2,6 +2,10 @@
 @import "../../program/state/is-state.scss";
 
 // label
+.el_id {
+  display: none;
+}
+
 .el_title {
   position: relative;
   font-size: rem(20);
