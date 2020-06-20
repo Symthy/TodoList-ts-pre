@@ -1,5 +1,5 @@
 @startuml
-title TaskBoard-Mini
+title TodoBoard-Mini
 
 package "View" {
   class EventHandlers
@@ -10,23 +10,23 @@ package "View" {
 package "ViewModel" {
   EventHandlers <-- ViewModelManager
 
-  class Task {
+  class Todo {
     id
     type
   }
   class State
   interface ViewModelManager
   class ViewModelManagerImpl
-  class ViewTaskManager
+  class ViewTodoManager
   ViewModelManager <|.. ViewModelManagerImpl
-  ViewModelManagerImpl <|-- ViewTaskManager
-  ViewTaskManager o-- TaskBoard
-  TaskBoard o-- TaskList
-  TaskList o-- Task
-  Task o-- State
+  ViewModelManagerImpl <|-- ViewTodoManager
+  ViewTodoManager o-- TodoBoard
+  TodoBoard o-- TodoList
+  TodoList o-- Todo
+  Todo o-- State
 }
 
-' ViewTaskManager --> ModelManager
+' ViewTodoManager --> ModelManager
 
 package "Model" {
   class ThreadExecutor
@@ -38,16 +38,16 @@ package "Model" {
   interface ModelManagerFactory
   interface ModelDto
   class ModelManagerImpl
-  class TaskManager
-  class TaskManagerFactory
-  class TaskDto
+  class TodoManager
+  class TodoManagerFactory
+  class TodoDto
   ModelManager <|.. ModelManagerImpl
-  ModelManagerImpl <|-- TaskManager
-  ModelManagerFactory <|.. TaskManagerFactory
-  ModelDto <|.. TaskDto
-  TaskManager <-- TaskDto
+  ModelManagerImpl <|-- TodoManager
+  ModelManagerFactory <|.. TodoManagerFactory
+  ModelDto <|.. TodoDto
+  TodoManager <-- TodoDto
   ModelManagerImpl <-- ModelDto
-  TaskManagerFactory --> TaskManager : create
+  TodoManagerFactory --> TodoManager : create
 
   ModelManagerImpl o-- DataSourceConnector
   ModelManagerImpl o-- FileAccessorFactory

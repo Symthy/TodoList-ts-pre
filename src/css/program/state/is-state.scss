@@ -15,3 +15,11 @@
 .is_pending {
   background-color: $pendingColor;
 }
+
+.is_hidden {
+  display: none;
+}
+
+.is_active {
+  display: block;
+}
