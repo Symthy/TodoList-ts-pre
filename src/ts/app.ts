@@ -1,13 +1,10 @@
-import "../css/style.scss";
-import { User } from "./model/user";
+import '../css/style.scss';
+import { ViewHandler } from './main/view/viewHandler';
+import { ViewDisplayer } from './main/view/viewDisplayer';
+import { ViewModelServiceImpl } from './main/viewmodel/impl/viewModelServiceImpl';
+import { ViewTodoManagerFactoryImpl } from './main/viewmodel/impl/viewModelManagerFactoryImpl';
 
-function createElement() {
-  const element = document.createElement("div");
-  const user: User = new User("Type", "Script", 20);
-  element.innerHTML = ["Hello", "world", user.firstName, user.lastName].join(
-    " "
-  );
-  return element;
-}
+ViewModelServiceImpl.init(new ViewTodoManagerFactoryImpl());
 
-document.body.appendChild(createElement());
+const viewHandler = new ViewHandler(new ViewDisplayer());
+viewHandler.resistCreateTaskEvent();

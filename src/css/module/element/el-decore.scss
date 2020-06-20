@@ -1,0 +1,80 @@
+// simbol
+.el_barIcon {
+  // インライン中央寄せ
+  display: table-cell;
+  vertical-align: middle;
+
+  &.el_barIcon__shrink {
+    transform: scaleX(0.5);
+  }
+  &:hover,
+  &:focus {
+    cursor: pointer;
+  }
+}
+
+.el_decoreFirst {
+  position: relative;
+  width: 15px;
+  margin-right: 10px;
+
+  &::after {
+    // 後ろに三角形追加
+    position: absolute;
+    left: 10px;
+    content: "";
+    width: 10px;
+    height: 50px;
+    transform: skewX(-10deg);
+  }
+}
+
+.el_decoreFirst.is_waiting {
+  @extend .is_waiting;
+  &::after {
+    @extend .is_waiting;
+  }
+}
+.el_decoreFirst.is_inprogress {
+  @extend .is_inprogress;
+  &::after {
+    @extend .is_inprogress;
+  }
+}
+.el_decoreFirst.is_completed {
+  @extend .is_completed;
+  &::after {
+    @extend .is_completed;
+  }
+}
+.el_decoreFirst.is_pending {
+  @extend .is_pending;
+  &::after {
+    @extend .is_pending;
+  }
+}
+
+.el_decoreSecond {
+  width: 5px;
+  margin-right: 5px;
+  transform: skewX(-10deg);
+}
+
+// empty
+.el_emptyItem {
+  height: 12px;
+  margin: 0 15px;
+}
+
+.el_svglink {
+  display: inline-block;
+  margin-right: 5px;
+  & > object {
+    // object要素のクリックを無効にしてa要素クリックを有効にする
+    pointer-events: none;
+  }
+
+  &:hover {
+    opacity: 0.5;
+  }
+}

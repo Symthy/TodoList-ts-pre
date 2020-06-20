@@ -1,4 +1,81 @@
-div {
-  border: 1px solid #aaa;
-  transform: scale(0.8);
+@import "../base/definition.scss";
+@import "../original/responsive/flex.scss";
+
+// .l-mainArea {
+//   フッタ最下部固定
+//   todolistの高さ = 100vh - header+footerの高さ
+//   min-height: calc(100vh - 100px);
+// }
+
+.ly-base {
+  display: grid;
+  // grid-template-areas:
+  //   "head head"
+  //   "side main"
+  //   "side foot";
+  grid-template-rows: $headerHeight 1fr $footerHeight;
+  grid-template-columns: 160px 1fr;
+}
+
+.ly-header {
+  //grid-area: "head";
+  grid-row: 1;
+  grid-column: 1 / span 2;
+  display: flex;
+  position: relative;
+}
+
+.ly-todolist {
+  position: relative;
+  //grid-area: "main";
+  grid-row: 2;
+  grid-column: 2;
+}
+
+.ly_side {
+  //grid-area: "side";
+  grid-row: 2 / span 3;
+  grid-column: 1;
+  display: flex;
+  background-color: $baseColor;
+  .ly_side_main {
+    flex-basis: 15/16 * 100%;
+    box-shadow: -5px 12px 10px 10px rgba(105, 105, 105, 0.2);
+    @extend .fl_columnLeft;
+
+    .ly_side_nav {
+      flex-grow: 7;
+    }
+
+    .ly_side_option {
+      flex-grow: 5;
+      @extend .fl_columnLeft;
+    }
+  }
+
+  .ly_sideBar {
+    flex-basis: 1/16 * 100%;
+    // インライン中央寄せ
+    display: table;
+    height: 100%;
+  }
+}
+
+// footer
+.ly_footer {
+  //grid-area: "foot";
+  grid-row: 3;
+  grid-column: 2;
+  // footer最下配置
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 0 5px;
+  background: linear-gradient(90deg, #f8f8ff, 50%, #e8e8ff);
+}
+.ly_footerInner {
+  position: relative;
+  height: 25px;
+  // flex setting: 縦中央/右寄せ
+  @extend .fl_rowEnd;
 }

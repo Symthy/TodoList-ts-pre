@@ -1,0 +1,78 @@
+@startuml
+title TodoBoard-Mini
+
+package "View" {
+  class EventHandlers
+  class DrawProcessors
+  EventHandlers <-- DrawProcessors
+}
+
+package "ViewModel" {
+  EventHandlers <-- ViewModelManager
+
+  class Todo {
+    id
+    type
+  }
+  class State
+  interface ViewModelManager
+  class ViewModelManagerImpl
+  class ViewTodoManager
+  ViewModelManager <|.. ViewModelManagerImpl
+  ViewModelManagerImpl <|-- ViewTodoManager
+  ViewTodoManager o-- TodoBoard
+  TodoBoard o-- TodoList
+  TodoList o-- Todo
+  Todo o-- State
+}
+
+' ViewTodoManager --> ModelManager
+
+package "Model" {
+  class ThreadExecutor
+  ViewModelManagerImpl <-- ThreadExecutor
+  ThreadExecutor o-- ModelManagerFactory
+  ThreadExecutor <-- ModelManager
+
+  interface ModelManager
+  interface ModelManagerFactory
+  interface ModelDto
+  class ModelManagerImpl
+  class TodoManager
+  class TodoManagerFactory
+  class TodoDto
+  ModelManager <|.. ModelManagerImpl
+  ModelManagerImpl <|-- TodoManager
+  ModelManagerFactory <|.. TodoManagerFactory
+  ModelDto <|.. TodoDto
+  TodoManager <-- TodoDto
+  ModelManagerImpl <-- ModelDto
+  TodoManagerFactory --> TodoManager : create
+
+  ModelManagerImpl o-- DataSourceConnector
+  ModelManagerImpl o-- FileAccessorFactory
+  DbConnectorAdapter <-- ModelDto
+
+  interface DataSourceConnector
+  class DbConnectorAdapter
+  class IndexedDbConnector
+  DataSourceConnector <|.. DbConnectorAdapter
+  DbConnectorAdapter o-- IndexedDbConnector
+
+  FileAccessor --> ModelManagerImpl
+
+  interface FileAccessorFactory
+  class FileAccessorFactoryImpl
+  interface FileWriter
+  interface FileLoader
+  interface FileAccessor
+  FileAccessorFactory <|.. FileAccessorFactoryImpl
+  FileAccessorFactoryImpl --> FileAccessorImpl : create
+  FileAccessor <|.. FileAccessorImpl
+  FileAccessorImpl o-- FileWriter
+  FileAccessorImpl o-- FileLoader
+  FileWriter <|.. CsvFileWriter
+  FileWriter <|.. JsonFileWriter
+  FileLoader <|.. JsonFileLoader
+}
+@enduml

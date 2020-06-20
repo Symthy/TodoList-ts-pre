@@ -1,0 +1,14 @@
+@import "../../original/responsive/flex.scss";
+
+.bl_createTaskUnit {
+  //display: flex;
+}
+
+.bl_inputTodoUnit {
+  @extend .fl_columnCenter;
+  position: relative;
+  background-color: white;
+  border: 2px solid black;
+  width: 100%;
+  height: 100%;
+}

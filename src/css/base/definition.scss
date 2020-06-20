@@ -1,0 +1,26 @@
+// variables
+$baseColor: ghostwhite;
+
+$headerHeight: 75px;
+$footerHeight: 25px;
+
+$waitingColor: dodgerblue;
+$inprogressColor: limegreen;
+$completedColor: tomato;
+$pendingColor: gold;
+
+// function
+@function translucentColor($color: #fff, $transmittance: 1) {
+  @return rgba(red($color), green($color), blue($color), $transmittance);
+}
+
+@function rem($pixels) {
+  @return $pixels / 16 * 1rem;
+}
+
+// mixin
+@mixin sortBtnLabelStyle($color: #fff) {
+  $transColor: translucentColor($color, 0.5);
+  background-color: $transColor;
+  box-shadow: 0 0 15px 2px $transColor, 0 0 10px 0px #fff inset;
+}

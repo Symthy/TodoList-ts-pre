@@ -1,0 +1,60 @@
+@import "../../base/definition.scss";
+@import "../../program/state/is-state.scss";
+
+// label
+.el_id {
+  display: none;
+}
+
+.el_title {
+  position: relative;
+  font-size: rem(20);
+  text-shadow: 1px 1px 1px rgba(black, 0.2);
+  margin: auto 3px;
+
+  &.el_title_large {
+    font-size: rem(28);
+  }
+}
+
+.el_todoTitle {
+  background-color: $baseColor;
+  font-size: rem(14);
+  margin: 11px 3px 2px 3px;
+}
+
+.el_label {
+  font-size: rem(16);
+  margin: auto; // 中央配置
+  &.el_label__large {
+    font-size: rem(18);
+  }
+  &.el_label__small {
+    font-size: rem(12);
+  }
+  &.el_label__xxsmall {
+    font-size: xx-small;
+    color: gray;
+  }
+}
+
+.el_sortLabel {
+  width: 70%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -130%) skew(-10deg);
+  white-space: nowrap;
+}
+.el_sortLabel.el_sortLabel__blue {
+  @include sortBtnLabelStyle($waitingColor);
+}
+.el_sortLabel.el_sortLabel__green {
+  @include sortBtnLabelStyle($inprogressColor);
+}
+.el_sortLabel.el_sortLabel__red {
+  @include sortBtnLabelStyle($completedColor);
+}
+.el_sortLabel.el_sortLabel__yellow {
+  @include sortBtnLabelStyle($pendingColor);
+}

@@ -1,0 +1,87 @@
+@import "../../base/definition.scss";
+@import "../../program/state/is-state.scss";
+
+// button
+.el_btn {
+  border-radius: 5px;
+  width: 120px;
+  height: 25px;
+  font-size: rem(14);
+  box-shadow: 1px 1px 2px 0.5px rgba(0, 0, 0, 0.25);
+  background-color: white;
+  border: 1px solid black;
+  transition: all 0.3s ease 0s;
+  &:hover,
+  &:focus {
+    opacity: 0.7;
+    background-color: black;
+    color: white;
+  }
+}
+
+.el_navBtn {
+  position: relative;
+  width: 95%;
+  height: 100%;
+  margin: 1px 0;
+  border: 3px double white;
+  background-color: darken($baseColor, 1%);
+  transition: all 0.3s ease 0s;
+  &:hover,
+  &:focus {
+    opacity: 0.6;
+    background-color: saturate($baseColor, 50%);
+  }
+}
+
+.el_createBtn {
+  position: relative;
+  width: 150px;
+  height: 30px;
+  border-radius: 3px;
+  background-color: black;
+  color: white;
+  opacity: 0.7;
+  box-shadow: 1px 1px 2px 0.5px rgba(0, 0, 0, 0.25);
+
+  transition: all 0.6s ease 0s;
+  &:hover {
+    opacity: 0.8;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 0px;
+    color: black;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 0;
+    opacity: 0.7;
+    background: black;
+    transition: all 300ms ease;
+  }
+  &::before {
+    top: 0;
+    right: 0;
+  }
+  &::after {
+    //right: inherit;
+    //top: inherit;
+    left: 0;
+    bottom: 0;
+  }
+  &:hover::before,
+  &:hover::after {
+    width: 100%;
+    transition: all 600ms ease;
+  }
+}
+
+.el_todo_head {
+  margin: auto;
+  width: 12px;
+  height: 80%;
+}

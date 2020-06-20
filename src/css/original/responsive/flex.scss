@@ -1,0 +1,21 @@
+// flex 縦並び左寄せ
+.fl_columnLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+// flex 縦並び中央
+.fl_columnCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+// flex 横並び右寄せ
+.fl_rowEnd {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
