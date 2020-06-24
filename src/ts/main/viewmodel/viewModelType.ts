@@ -1,4 +1,5 @@
 export const ViewModelTypes = {
+  BASE: 'ViewModel',
   TODO: 'Todo',
   SORTLABEL: 'SortLabel'
 } as const;
