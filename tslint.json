@@ -13,15 +13,15 @@
         "singleQuote": true,
         "semi": true
       }
+    ],
+    "max-line-length": [
+      true,
+      {
+        "limit": 120,
+        "ignore-pattern": "^import |^export {(.*?)}",
+        "check-strings": true,
+        "check-regex": true
+      }
     ]
-  },
-  "max-line-length": [
-    true,
-    {
-      "limit": 120,
-      "ignore-pattern": "^import |^export {(.*?)}",
-      "check-strings": true,
-      "check-regex": true
-    }
-  ]
+  }
 }

@@ -1,16 +1,13 @@
 import { ViewModelManager } from "./viewModelManager";
 import { ViewModelType } from "./viewModelType";
 import { ViewModel } from "../viewModel";
-import { ViewModelBuilder } from "../viewModelBuilder";
 
 export interface ViewModelService {
   readonly viewModelManagers: Map<ViewModelType, ViewModelManager<ViewModel>>;
 
-  getNextId(type: ViewModelType): number;
+  getViewModel(viewModel: ViewModel): ViewModel;
 
-  getViewModel(viewMdoel: ViewModel): ViewModel;
-
-  createViewModel(viewMdoelBuilder: ViewModelBuilder<ViewModel>): void;
+  createViewModel(type: ViewModelType): void;
 
   updateViewModel(viewModel: ViewModel): void;
 

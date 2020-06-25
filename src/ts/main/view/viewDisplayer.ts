@@ -19,11 +19,10 @@ export class ViewDisplayer {
       const vmBuilder = new ViewModelBuilderFactory().createViewModelBuilder(
         'Todo'
       );
+      vmBuilder.with({ workState: 'Waiting' });
       if (vmBuilder) {
         const vmService = ViewModelServiceImpl.getInstance();
-        vmService.createViewModel(
-          vmBuilder.with('id', vmService.getNextId('Todo'))
-        );
+        vmService.createViewModel('Todo');
       }
     }
   }

@@ -3,7 +3,7 @@ import { ViewModelManager } from '../viewModelManager';
 import { ViewModelManagerFactory } from '../viewModelManagerFactory';
 import { ViewModelType } from '../viewModelType';
 import { ViewModel } from '../../viewModel';
-import { ViewModelBuilder } from '../../viewModelBuilder';
+import { ViewModelBuilderFactory } from '../../viewModelBuilderFactory';
 
 export class ViewModelServiceImpl implements ViewModelService {
   private static instance: ViewModelService;
@@ -21,7 +21,7 @@ export class ViewModelServiceImpl implements ViewModelService {
     );
   }
 
-  getNextId(type: ViewModelType): number {
+  private getNextId(type: ViewModelType): number {
     const vmManager = this.viewModelManagers.get(type);
     if (vmManager) {
       return vmManager.getNextId();
@@ -29,20 +29,21 @@ export class ViewModelServiceImpl implements ViewModelService {
     throw new Error('');
   }
 
-  getViewModel(viewMdoel: ViewModel) {
-    const vmManager = this.viewModelManagers.get(viewMdoel.modelType);
+  getViewModel(viewModel: ViewModel) {
+    const vmManager = this.viewModelManagers.get(viewModel.modelType);
     if (vmManager && vmManager.getData) {
-      return vmManager.getData(viewMdoel);
+      return vmManager.getData(viewModel);
     }
     throw new Error('');
   }
 
-  createViewModel(viewMdoelBuilder: ViewModelBuilder<ViewModel>) {
-    const vmManager = this.viewModelManagers.get(
-      viewMdoelBuilder.getModelType()
+  createViewModel(type: ViewModelType) {
+    const vmBuilder = ViewModelBuilderFactory.newInstance().createViewModelBuilder(
+      type
     );
+    const vmManager = this.viewModelManagers.get(type);
     if (vmManager) {
-      return vmManager.create(viewMdoelBuilder);
+      return vmManager.create(vmBuilder.with({ id: this.getNextId(type) }));
     }
     throw new Error('');
   }

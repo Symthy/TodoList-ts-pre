@@ -5,21 +5,59 @@ import { ViewModel } from './viewModel';
 import { ViewModelType } from './viewmodel/viewModelType';
 
 export class ViewModelBuilderFactory {
-  createViewModelBuilder(
-    type: ViewModelType
-  ): ViewModelBuilder<ViewModel> | undefined {
-    if (type === 'Todo') {
-      return new TodoBuilder().with('modelType', type);
-    }
-    return;
+  static newInstance(): ViewModelBuilderFactory {
+    return new ViewModelBuilderFactory();
+  }
+
+  createViewModelBuilder(type?: ViewModelType): ViewModelBuilderDelegator {
+    return new ViewModelBuilderDelegator(type);
   }
 }
 
-abstract class ViewModelBuilderImpl<T extends ViewModel>
-  implements ViewModelBuilder<T> {
+type AllViewModel = ViewModel & ViewModelTodo;
+type AllViewModelKey = keyof ViewModelTodo;
+
+class ViewModelBuilderDelegator implements ViewModelBuilder<ViewModel> {
+  private builder: ViewModelBuilder<ViewModel | ViewModelTodo>;
+
+  constructor(modelType?: ViewModelType) {
+    if (modelType) {
+      this.builder = new TodoBuilder().with({ modelType: modelType });
+    } else {
+      this.builder = new ViewModelBaseBuilder().with({
+        modelType: 'ViewModel',
+      });
+    }
+  }
+
+  with(
+    input: { [key in AllViewModelKey]?: AllViewModel[key] }
+  ): ViewModelBuilder<ViewModel> {
+    return this.builder.with(input);
+  }
+
+  build(): ViewModel {
+    return this.builder.build();
+  }
+}
+
+abstract class AbstractViewModelBuilder<T extends ViewModel>
+  implements ViewModelBuilder<T>, Partial<ViewModel> {
+  id?: number;
   modelType?: ViewModelType;
 
-  abstract with(propertyName: keyof T, value: any): this;
+  with(input: { [key in keyof T]?: T[key] }): this {
+    for (let key in input) {
+      if (input.id) {
+        this.withId(input.id);
+      } else if (input.modelType) {
+        this.withModelType(input.modelType);
+      } else {
+        Object.assign(this, { key: input[key] });
+      }
+    }
+    return this;
+  }
 
   protected withId(id: number): this & Pick<ViewModelTodo, 'id'> {
     return Object.assign(this, { id: id });
@@ -35,47 +73,56 @@ abstract class ViewModelBuilderImpl<T extends ViewModel>
     return this.generateInstance();
   }
 
-  abstract getModelType(): ViewModelType;
-
   protected abstract generateInstance(): T;
 }
 
-class TodoBuilder extends ViewModelBuilderImpl<ViewModelTodo>
+class ViewModelBaseBuilder extends AbstractViewModelBuilder<ViewModel> {
+  getModelType(): ViewModelType {
+    return 'ViewModel';
+  }
+  protected generateInstance(): ViewModel {
+    const id = this.id ?? -1;
+    const type: ViewModelType = 'ViewModel';
+    return { id: id, modelType: type };
+  }
+}
+
+class TodoBuilder extends AbstractViewModelBuilder<ViewModelTodo>
   implements Partial<ViewModelTodo> {
   constructor() {
     super();
   }
 
-  with(propertyName: keyof ViewModelTodo, value: any): this {
-    if (propertyName === 'id') {
-      return this.withId(value);
+  with(input: { [key in keyof ViewModelTodo]?: ViewModelTodo[key] }): this {
+    if (input.id) {
+      return this.withId(input.id);
     }
-    if (propertyName === 'modelType') {
-      return this.withModelType(value);
+    if (input.modelType) {
+      return this.withModelType(input.modelType);
     }
-    if (propertyName === 'title') {
-      return this.withTitle(value);
+    if (input.title) {
+      return this.withTitle(input.title);
     }
-    if (propertyName === 'contents') {
-      return this.withContents(value);
+    if (input.contents) {
+      return this.withContents(input.contents);
     }
-    if (propertyName === 'createDate') {
-      return this.withCreateDate(value);
+    if (input.createDate) {
+      return this.withCreateDate(input.createDate);
     }
-    if (propertyName === 'startDate') {
-      return this.withStartDate(value);
+    if (input.startDate) {
+      return this.withStartDate(input.startDate);
     }
-    if (propertyName === 'estimateHour') {
-      return this.withEstimateHour(value);
+    if (input.estimateHour) {
+      return this.withEstimateHour(input.estimateHour);
     }
-    if (propertyName === 'resultHour') {
-      return this.withResultHour(value);
+    if (input.resultHour) {
+      return this.withResultHour(input.resultHour);
     }
-    if (propertyName === 'workState') {
-      return this.withWorkState(value);
+    if (input.workState) {
+      return this.withWorkState(input.workState);
     }
-    if (propertyName === 'displayOrder') {
-      return this.withDisplayOrder(value);
+    if (input.displayOrder) {
+      return this.withDisplayOrder(input.displayOrder);
     }
     return this;
   }
@@ -115,9 +162,6 @@ class TodoBuilder extends ViewModelBuilderImpl<ViewModelTodo>
     return Object.assign(this, { displayOrder: order });
   }
 
-  getModelType(): ViewModelType {
-    return 'Todo';
-  }
   generateInstance(this: ViewModel): ViewModelTodo {
     return new Todo(this);
   }
