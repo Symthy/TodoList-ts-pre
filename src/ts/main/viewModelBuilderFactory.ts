@@ -9,19 +9,20 @@ export class ViewModelBuilderFactory {
     return new ViewModelBuilderFactory();
   }
 
-  createViewModelBuilder(type?: ViewModelType): ViewModelBuilderAdapter {
-    return new ViewModelBuilderAdapter(type);
+  createViewModelBuilder(type?: ViewModelType): ViewModelBuilderDelegator {
+    return new ViewModelBuilderDelegator(type);
   }
 }
 
 type AllViewModel = ViewModel & ViewModelTodo;
 type AllViewModelKey = keyof ViewModelTodo;
 
-class ViewModelBuilderAdapter {
+class ViewModelBuilderDelegator implements ViewModelBuilder<ViewModel> {
   private builder: ViewModelBuilder<ViewModel | ViewModelTodo>;
-  constructor(private modelType?: ViewModelType) {
-    if (this.modelType) {
-      this.builder = new TodoBuilder().with({ modelType: this.modelType });
+
+  constructor(modelType?: ViewModelType) {
+    if (modelType) {
+      this.builder = new TodoBuilder().with({ modelType: modelType });
     } else {
       this.builder = new ViewModelBaseBuilder().with({
         modelType: 'ViewModel',
@@ -29,22 +30,31 @@ class ViewModelBuilderAdapter {
     }
   }
 
-  with(input: { [key in AllViewModelKey]?: AllViewModel[key] }) {
+  with(
+    input: { [key in AllViewModelKey]?: AllViewModel[key] }
+  ): ViewModelBuilder<ViewModel> {
     return this.builder.with(input);
+  }
+
+  build(): ViewModel {
+    return this.builder.build();
   }
 }
 
 abstract class AbstractViewModelBuilder<T extends ViewModel>
-  implements ViewModelBuilder<T> {
+  implements ViewModelBuilder<T>, Partial<ViewModel> {
   id?: number;
   modelType?: ViewModelType;
 
   with(input: { [key in keyof T]?: T[key] }): this {
-    if (input.id) {
-      this.withId(input.id);
-    }
-    if (input.modelType) {
-      this.withModelType(input.modelType);
+    for (let key in input) {
+      if (input.id) {
+        this.withId(input.id);
+      } else if (input.modelType) {
+        this.withModelType(input.modelType);
+      } else {
+        Object.assign(this, { key: input[key] });
+      }
     }
     return this;
   }
@@ -152,9 +162,6 @@ class TodoBuilder extends AbstractViewModelBuilder<ViewModelTodo>
     return Object.assign(this, { displayOrder: order });
   }
 
-  getModelType(): ViewModelType {
-    return 'Todo';
-  }
   generateInstance(this: ViewModel): ViewModelTodo {
     return new Todo(this);
   }
