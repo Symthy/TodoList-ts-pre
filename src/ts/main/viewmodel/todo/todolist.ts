@@ -27,10 +27,12 @@ export class Todolist {
   }
 
   deleteTodo(id: number): void {
-    const delTodoOrder = this.todolist.get(id)!.displayOrder;
-    for (let todo of this._todolist.values()) {
-      if (delTodoOrder < todo.displayOrder) {
-        todo.displayOrder -= 1;
+    const delTodoOrder = this.todolist.get(id)?.displayOrder;
+    if (delTodoOrder) {
+      for (let todo of this._todolist.values()) {
+        if (delTodoOrder < todo.displayOrder) {
+          todo.displayOrder -= 1;
+        }
       }
     }
     this.todolist.delete(id);

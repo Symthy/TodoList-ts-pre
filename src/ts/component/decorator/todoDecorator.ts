@@ -1,8 +1,9 @@
 import { ViewModelTodo } from '../../main/viewmodel/todo/todo';
 import { TodoState } from '../../main/viewmodel/todo/todoState';
 import { Template } from '../template';
+import { ViewModelType } from '../../main/viewmodel/viewModelType';
 
-export function TodoComponent(template: Template, selector: string) {
+export function TodoComponent(modelType: ViewModelType, selector: string) {
   return function <T extends { new (...args: any[]): {} }>(constructor: T) {
     return class extends constructor {
       constructor(...args: any[]) {
@@ -13,6 +14,7 @@ export function TodoComponent(template: Template, selector: string) {
         }
 
         const styleClassName = convertStateClass(todo.workState ?? 'Waiting');
+        const template = new Template(modelType);
         template
           .replaceTemplate(/{{ state }}/g, styleClassName)
           .replaceTemplate(/{{ id }}/g, todo.id);

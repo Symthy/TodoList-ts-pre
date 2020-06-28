@@ -2,7 +2,6 @@ import { TodoState } from './todoState';
 import { TodoComponent } from '../../../component/decorator/todoDecorator';
 import { ViewModel } from '../../viewModel';
 import { ViewModelType } from '../viewModelType';
-import { Template } from '../../../component/template';
 
 export interface ViewModelTodo extends ViewModel {
   title: string;
@@ -15,7 +14,7 @@ export interface ViewModelTodo extends ViewModel {
   displayOrder: number;
 }
 
-@TodoComponent(new Template('Todo'), '.js_todolist')
+@TodoComponent('Todo', '.js_todolist')
 export class Todo implements ViewModelTodo {
   private _id: number;
   private _modelType: ViewModelType;
