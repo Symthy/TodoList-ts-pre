@@ -8,8 +8,9 @@ export class ViewHandler {
   constructor(private _viewDisplayer: ViewDisplayer) {}
 
   public resistTodoEvent(): void {
+    const ctMenuHandler = new ContextMenuHandler();
     HtmlAccessor.getHtmlElements('.js_todo').forEach((todo) => {
-      todo.addEventListener('contextmenu', todoContextMenuFunc);
+      todo.addEventListener('contextmenu', ctMenuHandler.openContextMenuFunc);
     });
   }
 
@@ -26,12 +27,13 @@ export class ViewHandler {
   }
 
   public resistTodoObserver() {
+    const ctMenuHandler = new ContextMenuHandler();
     const observer = new MutationObserver(function (records) {
       records.forEach((rec) => {
         rec.addedNodes.forEach((elem) => {
           elem.addEventListener(
             'contextmenu',
-            todoContextMenuFunc as EventListener
+            ctMenuHandler.openContextMenuFunc
           );
         });
       });
@@ -42,50 +44,67 @@ export class ViewHandler {
   }
 }
 
-function todoContextMenuFunc(event: MouseEvent) {
-  const ctMenu = HtmlAccessor.getHtmlElement('.js_todoContextMenu');
-  ctMenu.style.left = String(event.pageX) + 'px';
-  ctMenu.style.top = String(event.pageY) + 'px';
-  ctMenu.style.display = 'block';
-  const todo = event.currentTarget as Element;
-  const prevEmptyElem = todo.previousElementSibling;
-  const menuDel = HtmlAccessor.getHtmlElement('.js_menuTodoDelete', ctMenu);
-  menuDel.removeEventListener('click', deleteTodoFunc());
-  menuDel.addEventListener('click', deleteTodoFunc(todo));
-
-  function deleteTodoFunc(todo?: Element): any {
-    return () => {
-      if (!todo) {
-        return;
-      }
-      todo.remove();
-      prevEmptyElem?.remove();
-
-      let id = -1;
-      let state = '';
-      for (let elem of Array.from(todo.children)) {
-        if (elem.classList.contains('js_todoId')) {
-          id = Number(elem.textContent);
-        }
-        if (elem.classList.contains('js_todoState')) {
-          state = elem.textContent ?? '';
-        }
-      }
-
-      const isTodoState = (obj: any): obj is TodoState => {
-        return Object.values(TodoStates).includes(obj);
-      };
-      if (id < 0 || !isTodoState(state)) {
-        return;
-      }
-      const vmBuilder = new ViewModelBuilderFactory().createViewModelBuilder();
-      const vmService = ViewModelServiceImpl.getInstance();
-      const vm = vmBuilder
-        .with({ id: id })
-        .with({ modelType: 'Todo' })
-        .with({ workState: state })
-        .build();
-      vmService.deleteViewModel(vm);
+class ContextMenuHandler {
+  private delTodo: Element | null;
+  public openContextMenuFunc: EventListener;
+  public deleteTodoFunc: EventListener;
+  constructor() {
+    this.delTodo = null;
+    this.openContextMenuFunc = (e: Event) => {
+      this.openContextMenu(e);
+    };
+    this.deleteTodoFunc = () => {
+      this.deleteTodo();
     };
   }
+
+  private openContextMenu(e: Event): void {
+    const event = e as MouseEvent;
+    const ctMenu = HtmlAccessor.getHtmlElement('.js_todoContextMenu');
+    ctMenu.style.left = String(event.pageX) + 'px';
+    ctMenu.style.top = String(event.pageY) + 'px';
+    ctMenu.style.display = 'block';
+    this.delTodo = event.currentTarget as Element | null;
+    if (!this.delTodo) {
+      return;
+    }
+    const menuDel = HtmlAccessor.getHtmlElement('.js_menuTodoDelete', ctMenu);
+    menuDel.addEventListener('click', this.deleteTodoFunc);
+  }
+
+  private deleteTodo(): void {
+    if (!this.delTodo) {
+      return;
+    }
+    const prevTodoEmpty = this.delTodo.previousElementSibling;
+    this.delTodo.remove();
+    prevTodoEmpty?.remove();
+
+    let id = -1;
+    let state = '';
+    for (let childElem of Array.from(this.delTodo.children)) {
+      if (childElem.classList.contains('js_todoId')) {
+        id = Number(childElem.textContent);
+      }
+      if (childElem.classList.contains('js_todoState')) {
+        state = childElem.textContent ?? '';
+      }
+    }
+
+    if (id < 0 || !isTodoState(state)) {
+      return;
+    }
+    const vmBuilder = new ViewModelBuilderFactory().createViewModelBuilder();
+    const vmService = ViewModelServiceImpl.getInstance();
+    const vm = vmBuilder
+      .with({ id: id })
+      .with({ modelType: 'Todo' })
+      .with({ workState: state })
+      .build();
+    vmService.deleteViewModel(vm);
+  }
+}
+
+function isTodoState(obj: any): obj is TodoState {
+  return Object.values(TodoStates).includes(obj);
 }
