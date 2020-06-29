@@ -15,10 +15,10 @@ export class ViewModelBuilderFactory {
 }
 
 type AllViewModel = ViewModel & ViewModelTodo;
-type AllViewModelKey = keyof ViewModelTodo;
+type AllViewModelKey = keyof AllViewModel;
 
 class ViewModelBuilderDelegator implements ViewModelBuilder<ViewModel> {
-  private builder: ViewModelBuilder<ViewModel | ViewModelTodo>;
+  private builder: ViewModelBuilder<ViewModel>;
 
   constructor(modelType?: ViewModelType) {
     if (modelType) {
@@ -32,8 +32,9 @@ class ViewModelBuilderDelegator implements ViewModelBuilder<ViewModel> {
 
   with(
     input: { [key in AllViewModelKey]?: AllViewModel[key] }
-  ): ViewModelBuilder<ViewModel> {
-    return this.builder.with(input);
+  ): ViewModelBuilderDelegator {
+    this.builder = this.builder.with(input);
+    return this;
   }
 
   build(): ViewModel {
@@ -53,7 +54,7 @@ abstract class AbstractViewModelBuilder<T extends ViewModel>
       } else if (input.modelType) {
         this.withModelType(input.modelType);
       } else {
-        Object.assign(this, { key: input[key] });
+        Object.assign(this, { [key]: input[key] });
       }
     }
     return this;
@@ -77,13 +78,16 @@ abstract class AbstractViewModelBuilder<T extends ViewModel>
 }
 
 class ViewModelBaseBuilder extends AbstractViewModelBuilder<ViewModel> {
-  getModelType(): ViewModelType {
-    return 'ViewModel';
-  }
   protected generateInstance(): ViewModel {
     const id = this.id ?? -1;
-    const type: ViewModelType = 'ViewModel';
-    return { id: id, modelType: type };
+    const type: ViewModelType = this.modelType ?? 'ViewModel';
+    const obj: ViewModel = { id: id, modelType: type };
+    for (let prop in this) {
+      if (prop !== 'id' || prop !== 'modelType') {
+        Object.assign(obj, { [prop]: this[prop] });
+      }
+    }
+    return obj;
   }
 }
 

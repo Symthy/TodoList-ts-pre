@@ -2,7 +2,7 @@
 @import "../../program/state/is-state.scss";
 
 // label
-.el_id {
+.el_hidden {
   display: none;
 }
 
@@ -35,6 +35,10 @@
   &.el_label__xxsmall {
     font-size: xx-small;
     color: gray;
+  }
+  &.el_label_caution {
+    color: red;
+    font-weight: bold;
   }
 }
 

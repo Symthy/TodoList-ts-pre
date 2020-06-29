@@ -1,4 +1,12 @@
 // margin
+.hp_mt5 {
+  margin-top: 5px;
+}
+
+.hp_mb10 {
+  margin-bottom: 10px;
+}
+
 .hp_ml10 {
   margin-left: 10px;
 }
@@ -7,22 +15,55 @@
   margin-left: 15px;
 }
 
+.hp_mtb5 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 .hp_mtb15 {
   margin-top: 15px;
   margin-bottom: 15px;
 }
 
+.hp_mrl10 {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
 .hp_mrl15 {
-  margin: 0 15px;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.hp_ma5 {
+  margin: 5px;
+}
+
+.hp_ma10 {
+  margin: 10px;
 }
 
 // padding
+.hp_pb5 {
+  padding-bottom: 5px;
+}
+
 .hp_prl2 {
   padding: 0 2px;
 }
 
 .hp_pl10 {
   padding-left: 5px;
+}
+
+// border
+.hp_bb {
+  border-bottom: solid 1px gray;
+}
+
+// cursor
+.hp_csrp {
+  cursor:pointer;
 }
 
 // z-index

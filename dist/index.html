@@ -2,12 +2,12 @@
 <html>
 <head>
   <title>Todo List Mini</title>
-  <meta name="viewport" content="widle=device-width, initial-sclae=1.0, minimum-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,500&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet" />
 <link href="style.css" rel="stylesheet"></head>
 
-<body class="ly-base">
+<body class="ly-base" oncontextmenu="return false">
   <header class="ly-header">
     <div class="un_headOne hp_zindex1"></div>
     <div class="un_headTwo hp_zindex1"></div>
@@ -36,8 +36,9 @@
         <div class="bl_todolist_body is_waiting js_todolist">
           <div class="el_emptyItem"></div>
 
-          <div class="bl_todo hp_mrl15 hp_prl2">
-            <div class="el_id">0</div>
+          <div class="bl_todo hp_mrl15 hp_prl2 js_todo">
+            <div class="el_hidden js_todoId">0</div>
+            <div class="el_hidden js_todoState">Waiting</div>
             <div class="el_todo_head is_waiting"></div>
             <div class="bl_todo_body">
               <h3 class="el_todoTitle">
@@ -84,10 +85,12 @@
           <div class="el_decoreSecond is_inprogress"></div>
           <h2 class="el_title">In Progress</h2>
         </div>
-        <div class="bl_todolist_body is_inprogress">
+        <div class="bl_todolist_body is_inprogress js_todolist">
           <div class="el_emptyItem"></div>
 
-          <div class="bl_todo hp_mrl15 hp_prl2">
+          <div class="bl_todo hp_mrl15 hp_prl2 js_todo">
+            <div class="el_hidden js_todoId">0</div>
+            <div class="el_hidden js_todoState">In Progress</div>
             <div class="el_todo_head is_inprogress"></div>
             <div class="bl_todo_body">
               <h3 class="el_todoTitle">
@@ -134,10 +137,12 @@
           <div class="el_decoreSecond is_completed"></div>
           <h2 class="el_title">Completed</h2>
         </div>
-        <div class="bl_todolist_body is_completed">
+        <div class="bl_todolist_body is_completed js_todolist">
           <div class="el_emptyItem"></div>
 
-          <div class="bl_todo hp_mrl15 hp_prl2">
+          <div class="bl_todo hp_mrl15 hp_prl2 js_todo">
+            <div class="el_hidden js_todoId">0</div>
+            <div class="el_hidden js_todoState">Completed</div>
             <div class="el_todo_head is_completed"></div>
             <div class="bl_todo_body">
               <h3 class="el_todoTitle">
@@ -184,10 +189,12 @@
           <div class="el_decoreSecond is_pending"></div>
           <h2 class="el_title">Pending</h2>
         </div>
-        <div class="bl_todolist_body is_pending">
+        <div class="bl_todolist_body is_pending js_todolist">
           <div class="el_emptyItem"></div>
 
-          <div class="bl_todo hp_mrl15 hp_prl2">
+          <div class="bl_todo hp_mrl15 hp_prl2 js_todo">
+            <div class="el_hidden js_todoId">0</div>
+            <div class="el_hidden js_todoState">Pending</div>
             <div class="el_todo_head is_pending"></div>
             <div class="bl_todo_body">
               <h3 class="el_todoTitle">
@@ -263,6 +270,19 @@
       <span class="el_barIcon el_barIcon__shrink">></span>
     </div>
   </aside>
+
+  <ul class='uq_todoContext hp_zindex4 js_todoContextMenu'>
+    <li class="el_label hp_ma5 hp_pb5 hp_bb hp_csrp js_meneTodoEdit">Edit Detail</li>
+    <li class="el_label el_label__small hp_ma5 hp_bb">State Change
+      <ul>
+        <li class="el_label hp_mrl10 hp_mt5 hp_csrp js_menuChangeWaiting">Waiting</li>
+        <li class="el_label hp_mrl10 hp_mt5 hp_csrp js_menuChangeInprogress">In Progress</li>
+        <li class="el_label hp_mrl10 hp_mt5 hp_csrp js_menuChangeCompleted">Completed</li>
+        <li class="el_label hp_mrl10 hp_mtb5 hp_csrp js_menuChangePending">Pending</li>
+      </ul>
+    </li>
+    <li class="el_label el_label_caution hp_ma5 hp_csrp js_menuTodoDelete">Delete</li>
+  </ul>
 
   <!-- <div class="un_allView hp_zindex5 js_inputTaskDetailArea is_hidden">
     <div class="un_inputBase">
