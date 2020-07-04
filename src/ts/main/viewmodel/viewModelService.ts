@@ -7,7 +7,7 @@ export interface ViewModelService {
 
   getViewModel(viewModel: ViewModel): ViewModel;
 
-  createViewModel(type: ViewModelType): void;
+  createViewModel(type: ViewModelType, viewModel?: ViewModel): void;
 
   updateViewModel(viewModel: ViewModel): void;
 

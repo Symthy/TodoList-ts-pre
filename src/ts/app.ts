@@ -4,10 +4,14 @@ import { ViewDisplayer } from './main/view/viewDisplayer';
 import { ViewModelServiceImpl } from './main/viewmodel/impl/viewModelServiceImpl';
 import { ViewTodoManagerFactoryImpl } from './main/viewmodel/impl/viewModelManagerFactoryImpl';
 import { HtmlAccessor } from './htmlUtils/htmlAccessor';
+import { getTodoCtMenuHandler } from './main/view/ContextMenuHandler';
 
 ViewModelServiceImpl.init(new ViewTodoManagerFactoryImpl());
 
-const viewHandler = new ViewHandler(new ViewDisplayer());
+const viewHandler = new ViewHandler(
+  new ViewDisplayer(),
+  getTodoCtMenuHandler()
+);
 viewHandler.resistCreateTaskEvent();
 viewHandler.resistTodoEvent();
 viewHandler.resistTodoObserver();

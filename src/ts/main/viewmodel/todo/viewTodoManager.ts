@@ -1,9 +1,8 @@
-import { ViewModelTodo } from './todo';
+import { ViewModelTodo, Todo } from './todo';
 import { TodoBoard } from './todoBoard';
 import { ViewModelManager } from '../viewModelManager';
 import { TodoState } from './todoState';
 import { ViewModel } from '../../viewModel';
-import { ViewModelBuilder } from '../../viewModelBuilder';
 
 export class ViewTodoManager implements ViewModelManager<ViewModelTodo> {
   private finalId: number;
@@ -15,8 +14,8 @@ export class ViewTodoManager implements ViewModelManager<ViewModelTodo> {
     return this.finalId + 1;
   }
 
-  create(vmModelBuilder: ViewModelBuilder<ViewModelTodo>): void {
-    const todoObj = vmModelBuilder.build();
+  create(vmModel: ViewModel): void {
+    const todoObj = new Todo(vmModel);
     if (todoObj.id > this.finalId) {
       this.finalId = todoObj.id;
     }
