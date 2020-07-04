@@ -1,7 +1,7 @@
 export const TodoStates = {
   WAITING: 'Waiting',
-  IN_PROGRESS: 'In progress',
+  IN_PROGRESS: 'InProgress',
   COMPLETED: 'Completed',
-  PENDDING: 'Pendding',
+  PENDDING: 'Pending',
 } as const;
 export type TodoState = typeof TodoStates[keyof typeof TodoStates];

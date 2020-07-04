@@ -12,13 +12,16 @@ export function TodoComponent(modelType: ViewModelType, selector: string) {
         if (todo === undefined) {
           return;
         }
-
-        const styleClassName = convertStateClass(todo.workState ?? 'Waiting');
+        const state = todo.workState ?? 'Waiting';
+        const stateStyleClass = convertStateClass(state);
         const template = new Template(modelType);
         template
-          .replaceTemplate(/{{ state }}/g, styleClassName)
+          .replaceTemplate(/{{ state }}/g, state)
+          .replaceTemplate(/{{ stateClass }}/g, stateStyleClass)
           .replaceTemplate(/{{ id }}/g, todo.id);
-        const mountedElement = document.querySelector(selector);
+        const mountedElement = document.querySelector(
+          '.' + stateStyleClass + selector
+        );
         if (mountedElement) {
           mountedElement.insertAdjacentHTML(
             'afterbegin',

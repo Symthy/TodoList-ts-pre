@@ -1,10 +1,9 @@
 import { ViewModel } from "../viewModel";
-import { ViewModelBuilder } from "../viewModelBuilder";
 
 export interface ViewModelManager<T extends ViewModel> {
   getNextId(): number;
 
-  create(viewModelBuilder: ViewModelBuilder<T>): void;
+  create(viewModel: T): void;
 
   getData?(viewModel: T): T;
 

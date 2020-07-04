@@ -1,4 +1,4 @@
-import { ViewModelTodo, Todo } from './viewmodel/todo/todo';
+import { ViewModelTodo, initTodo } from './viewmodel/todo/todo';
 import { ViewModelBuilder } from './viewModelBuilder';
 import { TodoState } from './viewmodel/todo/todoState';
 import { ViewModel } from './viewModel';
@@ -166,7 +166,11 @@ class TodoBuilder extends AbstractViewModelBuilder<ViewModelTodo>
     return Object.assign(this, { displayOrder: order });
   }
 
-  generateInstance(this: ViewModel): ViewModelTodo {
-    return new Todo(this);
+  protected getViewModelType(): ViewModelType {
+    return 'Todo';
+  }
+
+  protected generateInstance(): ViewModelTodo {
+    return initTodo(this);
   }
 }

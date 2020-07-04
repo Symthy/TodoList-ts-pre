@@ -37,15 +37,17 @@ export class ViewModelServiceImpl implements ViewModelService {
     throw new Error('');
   }
 
-  createViewModel(type: ViewModelType) {
+  createViewModel(type: ViewModelType, viewModel?: ViewModel): void | never {
     const vmBuilder = ViewModelBuilderFactory.newInstance().createViewModelBuilder(
       type
     );
     const vmManager = this.viewModelManagers.get(type);
-    if (vmManager) {
-      return vmManager.create(vmBuilder.with({ id: this.getNextId(type) }));
+    if (!vmManager) {
+      throw new Error('');
     }
-    throw new Error('');
+    viewModel === undefined
+      ? vmManager.create(vmBuilder.with({ id: this.getNextId(type) }).build())
+      : vmManager.create(viewModel);
   }
 
   updateViewModel(viewModel: ViewModel) {

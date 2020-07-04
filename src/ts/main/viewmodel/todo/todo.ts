@@ -27,17 +27,18 @@ export class Todo implements ViewModelTodo {
   private _workState: TodoState;
   private _displayOrder: number;
 
-  constructor(todo?: Partial<ViewModelTodo> & ViewModel) {
-    this._id = todo?.id ?? -1;
-    this._modelType = 'Todo';
-    this._title = todo?.title ?? '';
-    this._contents = todo?.contents ?? '';
-    this._createDate = todo?.createDate ?? new Date();
-    this._startDate = todo?.startDate ?? undefined;
-    this._estimateHour = todo?.estimateHour ?? 0;
-    this._resultHour = todo?.resultHour ?? 0;
-    this._workState = todo?.workState ?? 'Waiting';
-    this._displayOrder = todo?.displayOrder ?? 0;
+  constructor(todoBase?: Partial<ViewModelTodo> & ViewModel) {
+    const todo = initTodo(todoBase ?? {});
+    this._id = todo.id;
+    this._modelType = todo.modelType;
+    this._title = todo.title;
+    this._contents = todo.contents;
+    this._createDate = todo.createDate;
+    this._startDate = todo.startDate;
+    this._estimateHour = todo.estimateHour;
+    this._resultHour = todo.resultHour;
+    this._workState = todo.workState;
+    this._displayOrder = todo.displayOrder;
   }
   getModelType(): 'Todo' | 'SortLabel' {
     throw new Error('Method not implemented.');
@@ -109,4 +110,19 @@ export class Todo implements ViewModelTodo {
   set displayOrder(order: number) {
     this._displayOrder = order;
   }
+}
+
+export function initTodo(base: Partial<ViewModelTodo>): ViewModelTodo {
+  const target: Partial<ViewModelTodo> = {};
+  target.id = base?.id ?? -1;
+  target.modelType = 'Todo';
+  target.title = base?.title ?? '';
+  target.contents = base?.contents ?? '';
+  target.createDate = base?.createDate ?? new Date();
+  target.startDate = base?.startDate ?? undefined;
+  target.estimateHour = base?.estimateHour ?? 0;
+  target.resultHour = base?.resultHour ?? 0;
+  target.workState = base?.workState ?? 'Waiting';
+  target.displayOrder = base?.displayOrder ?? 0;
+  return target as ViewModelTodo;
 }

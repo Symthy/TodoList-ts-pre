@@ -25,8 +25,8 @@ const todoTemplate = `
   <div class="el_emptyItem"></div>
   <div class="bl_todo hp_mrl15 hp_prl2">
     <div class="el_hidden js_todoId">{{ id }}</div>
-    <div class="el_hidden js_todoState">Waiting</div>
-    <div class="el_todo_head {{ state }}"></div>
+    <div class="el_hidden js_todoState">{{ state }}</div>
+    <div class="el_todo_head {{ stateClass }}"></div>
     <div class="bl_todo_body">
       <h3 class="el_todoTitle">
         Test: Success Task Create by TS Program
