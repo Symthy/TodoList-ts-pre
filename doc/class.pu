@@ -2,22 +2,42 @@
 title TodoBoard-Mini
 
 package "View" {
-  class EventHandlers
+  interface ViewHandler {
+    register()
+  }
+
+  class ViewHandlers  implements ViewHandler {
+    Array<ViewHandler> handlers
+  }
+  class WindowHandler implements ViewHandler
+  class TodoComponentHandler implements ViewHandler
+  class TodoListComponentHandler implements ViewHandler
+  class SortLabelComponentHandler implements ViewHandler
   class DrawProcessors
-  EventHandlers <-- DrawProcessors
+
+  ViewHandlers o-- ViewHandler
+  WindowHandler o-- ViewStateNotifier
+  TodoComponentHandler o-- ViewStateNotifier
+  TodoListComponentHandler o-- ViewStateNotifier
+  SortLabelComponentHandler o-- ViewStateNotifier
+
+  TodoComponentHandler <.. DrawProcessors
+  SortLabelComponentHandler <.. DrawProcessors
 }
 
 package "ViewModel" {
-  EventHandlers <-- ViewModelManager
+  ViewStateNotifier <-- ViewModelService
 
   class Todo {
     id
     type
   }
   class State
+  class ViewModelService
   interface ViewModelManager
   class ViewModelManagerImpl
   class ViewTodoManager
+  ViewModelService o-- ViewModelManager
   ViewModelManager <|.. ViewModelManagerImpl
   ViewModelManagerImpl <|-- ViewTodoManager
   ViewTodoManager o-- TodoBoard
