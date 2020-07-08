@@ -1,21 +1,18 @@
-import { TodoState, TodoStates } from '../viewmodel/todo/todoState';
-import { ViewModelBuilderFactory } from '../viewModelBuilderFactory';
-import { HtmlAccessor } from '../../htmlUtils/htmlAccessor';
-import { ViewModel } from '../viewModel';
-import { ViewModelServiceImpl } from '../viewmodel/impl/viewModelServiceImpl';
+import { TodoState, TodoStates } from '../../../viewmodel/todo/todoState';
+import { ViewModelBuilderFactory } from '../../../viewModelBuilderFactory';
+import { HtmlAccessor } from '../../../../htmlUtils/htmlAccessor';
+import { ViewModel } from '../../../viewModel';
+import { ViewModelServiceImpl } from '../../../viewmodel/impl/viewModelServiceImpl';
+import { ContextMenuHandler } from '../ContextMenuHandler';
 
-export interface ContextMenuHandler {
-  openContextMenuFunc: EventListener;
-}
-
-class TodoContextMenuHandler implements ContextMenuHandler {
+export class TodoContextMenuHandler implements ContextMenuHandler {
   private targetTodo: HTMLElement | null;
-  public openContextMenuFunc: EventListener;
-  public changeStateWaitingFunc: EventListener;
-  public changeStateInprogressFunc: EventListener;
-  public changeStateCompletedFunc: EventListener;
-  public changeStatePendingFunc: EventListener;
-  public deleteTodoFunc: EventListener;
+  private openContextMenuFunc: EventListener;
+  private changeStateWaitingFunc: EventListener;
+  private changeStateInprogressFunc: EventListener;
+  private changeStateCompletedFunc: EventListener;
+  private changeStatePendingFunc: EventListener;
+  private deleteTodoFunc: EventListener;
 
   constructor() {
     this.targetTodo = null;
@@ -37,6 +34,10 @@ class TodoContextMenuHandler implements ContextMenuHandler {
     this.deleteTodoFunc = () => {
       this.deleteTodo();
     };
+  }
+
+  supply(): EventListener {
+    return this.openContextMenuFunc;
   }
 
   private openContextMenu(e: Event): void {
