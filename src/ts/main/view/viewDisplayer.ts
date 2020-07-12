@@ -1,6 +1,6 @@
-import { HtmlAccessor } from '../../htmlUtils/htmlAccessor';
 import { ViewModelServiceImpl } from '../viewmodel/impl/viewModelServiceImpl';
 import { ViewModelBuilderFactory } from '../viewModelBuilderFactory';
+import { HtmlAccessor } from '../../htmlUtils/htmlAccessor';
 
 export class ViewDisplayer {
   public displayInputTaskArea(): void {

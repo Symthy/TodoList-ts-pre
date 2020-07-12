@@ -7,28 +7,32 @@ export class TodoBoard {
 
   constructor() {
     this.todolists = new Map();
-    for (let stateName of Object.values(TodoStates)) {
+    for (const stateName of Object.values(TodoStates)) {
       this.todolists.set(stateName, new Todolist(stateName));
     }
   }
 
-  addTodo(state: TodoState, todo: ViewModelTodo) {
-    this.todolists.get(state)!.addTodo(todo);
+  addTodo(state: TodoState, todo: ViewModelTodo): void {
+    this.todolists.get(state)?.addTodo(todo);
   }
 
   getTodo(state: TodoState, id: number): ViewModelTodo {
-    const todo = this.todolists.get(state)!.getTodo(id);
+    const todo = this.todolists.get(state)?.getTodo(id);
     if (todo) {
       return todo;
     }
     throw new Error('');
   }
 
-  deleteTodo(state: TodoState, id: number) {
-    this.todolists.get(state)!.deleteTodo(id);
+  deleteTodo(state: TodoState, id: number): void {
+    this.todolists.get(state)?.deleteTodo(id);
   }
 
-  updateTodo(state: TodoState, todo: ViewModelTodo): boolean {
-    return this.todolists.get(state)!.updateTodo(todo);
+  updateTodo(state: TodoState, todo: ViewModelTodo): boolean | never {
+    const todolist = this.todolists.get(state);
+    if (todolist) {
+      return todolist.updateTodo(todo);
+    }
+    throw Error('');
   }
 }

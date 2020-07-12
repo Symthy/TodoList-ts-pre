@@ -1,18 +1,28 @@
 import '../css/style.scss';
 import { ViewModelServiceImpl } from './main/viewmodel/impl/viewModelServiceImpl';
 import { ViewTodoManagerFactoryImpl } from './main/viewmodel/impl/viewModelManagerFactoryImpl';
-import { HtmlAccessor } from './htmlUtils/htmlAccessor';
-import { getTodoCtMenuHandler } from './main/view/handler/impl/TodoContextMenuHandler';
-import { ViewHandlers } from './main/view/handler/viewHandlers';
+import { TodoContextMenuHandler } from './main/view/handler/impl/TodoContextMenuHandler';
+import { ViewEventHandlerRegisters } from './main/view/handler/viewEventHandlers';
 import { TodoComponentHandler } from './main/view/handler/impl/TodoComponentHandler';
 import { CreateTaskBtnHandler } from './main/view/handler/impl/CreateTaskBtnHandler';
 import { ViewDisplayer } from './main/view/viewDisplayer';
+import { ViewEditModeState } from './main/view/viewEditModeState';
+import { TodoConvertElementHandler } from './main/view/handler/impl/todoConvertElementHandler';
+import { TodoResetElementHandler } from './main/view/handler/impl/todoResetElementHandler';
+import { WindowHandler } from './main/view/handler/impl/windowHandler';
+import { HtmlAccessor } from './htmlUtils/htmlAccessor';
 
+const editState = new ViewEditModeState();
+const todoResetHandler = new TodoResetElementHandler(editState);
 ViewModelServiceImpl.init(new ViewTodoManagerFactoryImpl());
 
-ViewHandlers.init(
-  new TodoComponentHandler(getTodoCtMenuHandler()),
-  new CreateTaskBtnHandler(new ViewDisplayer())
+ViewEventHandlerRegisters.init(
+  new TodoComponentHandler(
+    new TodoContextMenuHandler(),
+    new TodoConvertElementHandler(editState, todoResetHandler)
+  ),
+  new CreateTaskBtnHandler(new ViewDisplayer()),
+  new WindowHandler(todoResetHandler)
 ).register();
 
 document.body.addEventListener('click', function () {

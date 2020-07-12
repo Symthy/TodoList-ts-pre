@@ -20,7 +20,7 @@ export class Todolist {
   }
 
   addTodo(todo: ViewModelTodo): void {
-    for (let todo of this._todolist.values()) {
+    for (const todo of this._todolist.values()) {
       todo.displayOrder += 1;
     }
     this.todolist.set(todo.id, todo);
@@ -29,7 +29,7 @@ export class Todolist {
   deleteTodo(id: number): void {
     const delTodoOrder = this.todolist.get(id)?.displayOrder;
     if (delTodoOrder) {
-      for (let todo of this._todolist.values()) {
+      for (const todo of this._todolist.values()) {
         if (delTodoOrder < todo.displayOrder) {
           todo.displayOrder -= 1;
         }

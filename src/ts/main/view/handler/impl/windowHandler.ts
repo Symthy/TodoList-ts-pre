@@ -1,8 +1,11 @@
-import { ViewHandler } from "../viewHandler";
+import {
+  ViewEventHandlerRegister,
+  ViewEventHandlerSupplier,
+} from '../viewEventHandler';
 
-export class WindowHandler implements ViewHandler {
-
+export class WindowHandler implements ViewEventHandlerRegister {
+  constructor(private resetEditingHandler: ViewEventHandlerSupplier) {}
   register(): void {
-    throw new Error("Method not implemented.");
+    window.addEventListener('click', this.resetEditingHandler.supply());
   }
 }

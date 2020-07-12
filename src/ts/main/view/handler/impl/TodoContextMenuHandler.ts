@@ -1,11 +1,11 @@
-import { TodoState, TodoStates } from '../../../viewmodel/todo/todoState';
+import { TodoState, isTodoState } from '../../../viewmodel/todo/todoState';
 import { ViewModelBuilderFactory } from '../../../viewModelBuilderFactory';
-import { HtmlAccessor } from '../../../../htmlUtils/htmlAccessor';
 import { ViewModel } from '../../../viewModel';
 import { ViewModelServiceImpl } from '../../../viewmodel/impl/viewModelServiceImpl';
-import { ContextMenuHandler } from '../ContextMenuHandler';
+import { ViewEventHandlerSupplier } from '../viewEventHandler';
+import { HtmlAccessor } from '../../../../htmlUtils/htmlAccessor';
 
-export class TodoContextMenuHandler implements ContextMenuHandler {
+export class TodoContextMenuHandler implements ViewEventHandlerSupplier {
   private targetTodo: HTMLElement | null;
   private openContextMenuFunc: EventListener;
   private changeStateWaitingFunc: EventListener;
@@ -127,12 +127,4 @@ export class TodoContextMenuHandler implements ContextMenuHandler {
       .with({ workState: state })
       .build();
   }
-}
-
-function isTodoState(obj: any): obj is TodoState {
-  return Object.values(TodoStates).includes(obj);
-}
-
-export function getTodoCtMenuHandler(): ContextMenuHandler {
-  return new TodoContextMenuHandler();
 }

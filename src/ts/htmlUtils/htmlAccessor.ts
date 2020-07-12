@@ -1,4 +1,7 @@
 export class HtmlAccessor {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  private constructor() {}
+
   static getHtmlElement<T extends HTMLElement = HTMLElement>(
     query: string,
     rootElem?: HTMLElement
@@ -42,5 +45,14 @@ export class HtmlAccessor {
       return Array.from(elem);
     }
     throw new Error('');
+  }
+
+  static convertElement(
+    elem: HTMLElement,
+    baseHtml: string,
+    identifier: string
+  ): void {
+    const data = HtmlAccessor.getHtmlElement('.js_data', elem).innerText;
+    elem.innerHTML = baseHtml.replace(identifier, data);
   }
 }

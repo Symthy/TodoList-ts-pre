@@ -44,7 +44,7 @@ module.exports = (env, argv) => {
           test: /\.ts$/,
           use: [
             {
-              loader: "tslint-loader",
+              loader: "eslint-loader",
               options: {
                 typeCheck: true,
                 fix: true,

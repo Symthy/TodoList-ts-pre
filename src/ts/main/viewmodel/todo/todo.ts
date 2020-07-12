@@ -1,5 +1,5 @@
 import { TodoState } from './todoState';
-import { TodoComponent } from '../../../component/decorator/todoDecorator';
+import { TodoComponent } from '../../../component/decorator/todoComponent';
 import { ViewModel } from '../../viewModel';
 import { ViewModelType } from '../viewModelType';
 

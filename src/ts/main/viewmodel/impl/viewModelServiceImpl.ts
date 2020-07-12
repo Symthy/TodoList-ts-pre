@@ -15,13 +15,13 @@ export class ViewModelServiceImpl implements ViewModelService {
     this.viewModelManagers = _viewModelManagers;
   }
 
-  static init(vmManagerfactory: ViewModelManagerFactory) {
+  static init(vmManagerfactory: ViewModelManagerFactory): void {
     this.instance = new ViewModelServiceImpl(
       vmManagerfactory.createViewModelManagers()
     );
   }
 
-  private getNextId(type: ViewModelType): number {
+  private getNextId(type: ViewModelType): number | never {
     const vmManager = this.viewModelManagers.get(type);
     if (vmManager) {
       return vmManager.getNextId();
@@ -29,7 +29,7 @@ export class ViewModelServiceImpl implements ViewModelService {
     throw new Error('');
   }
 
-  getViewModel(viewModel: ViewModel) {
+  getViewModel(viewModel: ViewModel): ViewModel | never {
     const vmManager = this.viewModelManagers.get(viewModel.modelType);
     if (vmManager && vmManager.getData) {
       return vmManager.getData(viewModel);
@@ -50,7 +50,7 @@ export class ViewModelServiceImpl implements ViewModelService {
       : vmManager.create(viewModel);
   }
 
-  updateViewModel(viewModel: ViewModel) {
+  updateViewModel(viewModel: ViewModel): boolean | never {
     const vmManager = this.viewModelManagers.get(viewModel.modelType);
     if (vmManager) {
       return vmManager.update(viewModel);
@@ -58,15 +58,15 @@ export class ViewModelServiceImpl implements ViewModelService {
     throw new Error('');
   }
 
-  deleteViewModel(viewModel: ViewModel) {
+  deleteViewModel(viewModel: ViewModel): void | never {
     const vmManager = this.viewModelManagers.get(viewModel.modelType);
     if (vmManager) {
-      return vmManager.delete(viewModel);
+      vmManager.delete(viewModel);
     }
     throw new Error('');
   }
 
-  static getInstance() {
+  static getInstance(): ViewModelService {
     return this.instance;
   }
 }
