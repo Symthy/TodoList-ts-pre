@@ -5,3 +5,8 @@ export const TodoStates = {
   PENDDING: 'Pending',
 } as const;
 export type TodoState = typeof TodoStates[keyof typeof TodoStates];
+
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+export function isTodoState(state: any): state is TodoState {
+  return Object.values(TodoStates).includes(state);
+}

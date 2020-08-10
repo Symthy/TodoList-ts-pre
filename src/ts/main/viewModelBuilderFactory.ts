@@ -48,7 +48,7 @@ abstract class AbstractViewModelBuilder<T extends ViewModel>
   modelType?: ViewModelType;
 
   with(input: { [key in keyof T]?: T[key] }): this {
-    for (let key in input) {
+    for (const key in input) {
       if (input.id) {
         this.withId(input.id);
       } else if (input.modelType) {
@@ -82,7 +82,7 @@ class ViewModelBaseBuilder extends AbstractViewModelBuilder<ViewModel> {
     const id = this.id ?? -1;
     const type: ViewModelType = this.modelType ?? 'ViewModel';
     const obj: ViewModel = { id: id, modelType: type };
-    for (let prop in this) {
+    for (const prop in this) {
       if (prop !== 'id' || prop !== 'modelType') {
         Object.assign(obj, { [prop]: this[prop] });
       }

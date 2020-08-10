@@ -1,8 +1,8 @@
-import { HtmlAccessor } from '../../../../htmlUtils/htmlAccessor';
 import { ViewDisplayer } from '../../viewDisplayer';
-import { ViewHandler } from '../viewHandler';
+import { ViewEventHandlerRegister } from '../viewEventHandler';
+import { HtmlAccessor } from '../../../../htmlUtils/htmlAccessor';
 
-export class CreateTaskBtnHandler implements ViewHandler {
+export class CreateTaskBtnHandler implements ViewEventHandlerRegister {
   constructor(private _viewDisplayer: ViewDisplayer) {}
   register(): void {
     this.resistCreateTaskEvent();

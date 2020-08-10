@@ -1,9 +1,12 @@
 import { ViewModelTodo } from '../../main/viewmodel/todo/todo';
 import { TodoState } from '../../main/viewmodel/todo/todoState';
-import { Template } from '../template';
+import { Template } from '../todoTemplate';
 import { ViewModelType } from '../../main/viewmodel/viewModelType';
 
-export function TodoComponent(modelType: ViewModelType, selector: string) {
+export function TodoComponent(
+  modelType: ViewModelType,
+  selector: string
+): Function {
   return function <T extends { new (...args: any[]): {} }>(constructor: T) {
     return class extends constructor {
       constructor(...args: any[]) {
