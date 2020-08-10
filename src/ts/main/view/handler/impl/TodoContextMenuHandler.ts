@@ -2,8 +2,8 @@ import { TodoState, isTodoState } from '../../../viewmodel/todo/todoState';
 import { ViewModelBuilderFactory } from '../../../viewModelBuilderFactory';
 import { ViewModel } from '../../../viewModel';
 import { ViewModelServiceImpl } from '../../../viewmodel/impl/viewModelServiceImpl';
-import { ViewEventHandlerSupplier } from '../viewEventHandler';
 import { HtmlAccessor } from '../../../../htmlUtils/htmlAccessor';
+import { ViewEventHandlerSupplier } from '../viewEventHandler';
 
 export class TodoContextMenuHandler implements ViewEventHandlerSupplier {
   private targetTodo: HTMLElement | null;
