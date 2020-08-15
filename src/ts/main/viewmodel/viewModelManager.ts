@@ -1,4 +1,4 @@
-import { ViewModel } from "../viewModel";
+import { ViewModel } from '../viewModel';
 
 export interface ViewModelManager<T extends ViewModel> {
   getNextId(): number;

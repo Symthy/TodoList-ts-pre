@@ -1,6 +1,6 @@
-import { ViewModelType } from "./viewmodel/viewModelType";
+import { ViewModelType } from './viewmodel/viewModelType';
 
 export interface ViewModel {
-  id: number,
-  modelType: ViewModelType
+  id: number;
+  modelType: ViewModelType;
 }

@@ -1,6 +1,6 @@
-import { ViewModelManager } from "./viewModelManager";
-import { ViewModelType } from "./viewModelType";
-import { ViewModel } from "../viewModel";
+import { ViewModelManager } from './viewModelManager';
+import { ViewModelType } from './viewModelType';
+import { ViewModel } from '../viewModel';
 
 export interface ViewModelService {
   readonly viewModelManagers: Map<ViewModelType, ViewModelManager<ViewModel>>;

@@ -1,4 +1,4 @@
-import { ViewModel } from "./viewModel";
+import { ViewModel } from './viewModel';
 
 export interface ViewModelBuilder<T extends ViewModel> {
   with(input: { [key in keyof T]?: T[key] }): ViewModelBuilder<T>;

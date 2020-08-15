@@ -11,15 +11,26 @@ import { TodoConvertElementHandler } from './main/view/handler/impl/todoConvertE
 import { TodoResetElementHandler } from './main/view/handler/impl/todoResetElementHandler';
 import { WindowHandler } from './main/view/handler/impl/windowHandler';
 import { HtmlAccessor } from './htmlUtils/htmlAccessor';
+import {
+  ChildComponentHolder,
+  createTodoChildComponents,
+} from './component/childComponentHolder';
+import { TodoElement } from './todoElement';
+
+const todoCmpHolder = new ChildComponentHolder<
+  TodoElement,
+  ConvertableComponent
+>();
+todoCmpHolder.components = createTodoChildComponents();
 
 const editState = new ViewEditModeState();
-const todoResetHandler = new TodoResetElementHandler(editState);
+const todoResetHandler = new TodoResetElementHandler(todoCmpHolder, editState);
 ViewModelServiceImpl.init(new ViewTodoManagerFactoryImpl());
 
 ViewEventHandlerRegisters.init(
   new TodoComponentHandler(
     new TodoContextMenuHandler(),
-    new TodoConvertElementHandler(editState, todoResetHandler)
+    new TodoConvertElementHandler(todoCmpHolder, editState, todoResetHandler)
   ),
   new CreateTaskBtnHandler(new ViewDisplayer()),
   new WindowHandler(todoResetHandler)
