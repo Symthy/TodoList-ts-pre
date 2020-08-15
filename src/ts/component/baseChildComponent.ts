@@ -1,4 +1,3 @@
-import { HtmlAccessor } from '../htmlUtils/htmlAccessor';
 import { TemplatePartsHolder } from './componentTemplateParts';
 
 export abstract class BaseChildComponent implements ConvertableComponent {

@@ -6,7 +6,6 @@ import { ViewEventHandlerRegisters } from './main/view/handler/viewEventHandlers
 import { TodoComponentHandler } from './main/view/handler/impl/TodoComponentHandler';
 import { CreateTaskBtnHandler } from './main/view/handler/impl/CreateTaskBtnHandler';
 import { ViewDisplayer } from './main/view/viewDisplayer';
-import { ViewEditModeState } from './main/view/viewEditModeState';
 import { TodoConvertElementHandler } from './main/view/handler/impl/todoConvertElementHandler';
 import { TodoResetElementHandler } from './main/view/handler/impl/todoResetElementHandler';
 import { WindowHandler } from './main/view/handler/impl/windowHandler';
@@ -23,14 +22,13 @@ const todoCmpHolder = new ChildComponentHolder<
 >();
 todoCmpHolder.components = createTodoChildComponents();
 
-const editState = new ViewEditModeState();
-const todoResetHandler = new TodoResetElementHandler(todoCmpHolder, editState);
+const todoResetHandler = new TodoResetElementHandler(todoCmpHolder);
 ViewModelServiceImpl.init(new ViewTodoManagerFactoryImpl());
 
 ViewEventHandlerRegisters.init(
   new TodoComponentHandler(
     new TodoContextMenuHandler(),
-    new TodoConvertElementHandler(todoCmpHolder, editState, todoResetHandler)
+    new TodoConvertElementHandler(todoCmpHolder, todoResetHandler)
   ),
   new CreateTaskBtnHandler(new ViewDisplayer()),
   new WindowHandler(todoResetHandler)

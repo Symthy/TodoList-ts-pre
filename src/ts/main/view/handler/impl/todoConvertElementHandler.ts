@@ -1,4 +1,3 @@
-import { ViewEditModeState } from '../../viewEditModeState';
 import {
   ViewEventHandlerSupplier,
   ViewEventHandlerCallableSupplier,
@@ -13,7 +12,6 @@ export class TodoConvertElementHandler implements ViewEventHandlerSupplier {
 
   constructor(
     private childComponents: ComponentHolder<TodoElement, ConvertableComponent>,
-    private editState: ViewEditModeState,
     private resetEditingHandler: ViewEventHandlerCallableSupplier
   ) {
     this.convertTitleFunc = (e: Event) => {
