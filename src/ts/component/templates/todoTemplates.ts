@@ -1,4 +1,4 @@
-import { ViewModelType } from '../main/viewmodel/viewModelType';
+import { ViewModelType } from '../../main/viewmodel/viewModelType';
 
 export class Template {
   private templateHtml = '';
@@ -98,12 +98,12 @@ export const TODO_DETAIL_EDIT_HTML = `
 `;
 
 export const IDENTIFIER_TIME = '{{ time }}';
-const TIME_SELECT_NORMAL_HTML = `
+export const TIME_SELECT_NORMAL_HTML = `
           <p class="el_label el_label__small js_data">
               {{ time }}
             </p>
 `;
-const TIME_SELECT_EDIT_HTML = `
+export const TIME_SELECT_EDIT_HTML = `
           <form>
             <select class="js_select" size=1>
               <option value="0.5h">0.5h</option>

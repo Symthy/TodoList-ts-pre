@@ -2,9 +2,8 @@ import {
   ExtensionViewEventHandlerRegister,
   ViewEventHandlerSupplier,
 } from '../viewEventHandler';
-
-import { TodoElement } from './todoConvertElementHandler';
 import { HtmlAccessor } from '../../../../htmlUtils/htmlAccessor';
+import { TodoElement } from '../../../../todoElement';
 
 export class TodoComponentHandler extends ExtensionViewEventHandlerRegister {
   constructor(

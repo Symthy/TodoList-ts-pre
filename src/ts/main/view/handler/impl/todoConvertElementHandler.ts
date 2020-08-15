@@ -1,26 +1,9 @@
-import { HtmlAccessor } from '../../../../htmlUtils/htmlAccessor';
-import {
-  TODO_TITLE_EDIT_HTML,
-  IDENTIFIER_TITLE,
-  TODO_DETAIL_EDIT_HTML,
-  IDENTIFIER_DETAIL,
-  TODO_ESTIMATE_EDIT_HTML,
-  TODO_RESULT_EDIT_HTML,
-} from '../../../../component/todoTemplate';
 import { ViewEditModeState } from '../../viewEditModeState';
 import {
   ViewEventHandlerSupplier,
   ViewEventHandlerCallableSupplier,
 } from '../viewEventHandler';
-
-const TodoElements = {
-  TITLE: 'Title',
-  DETAIL: 'Detail',
-  ESTIMATE: 'EstimateTime',
-  RESULT: 'ResultTime',
-} as const;
-type TodoElementsType = typeof TodoElements;
-export type TodoElement = TodoElementsType[keyof TodoElementsType];
+import { TodoElement } from '../../../../todoElement';
 
 export class TodoConvertElementHandler implements ViewEventHandlerSupplier {
   private convertTitleFunc: EventListener;
@@ -29,6 +12,7 @@ export class TodoConvertElementHandler implements ViewEventHandlerSupplier {
   private convertResultTimeFunc: EventListener;
 
   constructor(
+    private childComponents: ComponentHolder<TodoElement, ConvertableComponent>,
     private editState: ViewEditModeState,
     private resetEditingHandler: ViewEventHandlerCallableSupplier
   ) {
@@ -63,45 +47,31 @@ export class TodoConvertElementHandler implements ViewEventHandlerSupplier {
 
   private convertTitle(event: Event) {
     this.resetEditingHandler.call();
-    this.editState.editingTodoTitle = event.currentTarget as HTMLElement;
-    HtmlAccessor.convertElement(
-      this.editState.editingTodoTitle,
-      TODO_TITLE_EDIT_HTML,
-      IDENTIFIER_TITLE
-    );
+    const titleCmp = this.childComponents.getComponent('Title');
+    titleCmp.editingElement = event.currentTarget as HTMLElement;
+    titleCmp.convertComponent();
   }
 
   private convertDetail(event: Event) {
     this.resetEditingHandler.call();
-    const elem = event.currentTarget as HTMLElement;
-    HtmlAccessor.convertElement(elem, TODO_DETAIL_EDIT_HTML, IDENTIFIER_DETAIL);
+    const titleCmp = this.childComponents.getComponent('Detail');
+    titleCmp.editingElement = event.currentTarget as HTMLElement;
+    titleCmp.convertComponent();
   }
 
   private convertEstimateTime(event: Event) {
     this.resetEditingHandler.call();
-    const elem = event.currentTarget as HTMLElement;
-    convertTimeElem(elem, TODO_ESTIMATE_EDIT_HTML);
+    const titleCmp = this.childComponents.getComponent('EstimateTime');
+    titleCmp.editingElement = event.currentTarget as HTMLElement;
+    titleCmp.convertComponent();
   }
 
   private convertResultTime(event: Event) {
     this.resetEditingHandler.call();
-    const elem = event.currentTarget as HTMLElement;
-    convertTimeElem(elem, TODO_RESULT_EDIT_HTML);
+    const titleCmp = this.childComponents.getComponent('ResultTime');
+    titleCmp.editingElement = event.currentTarget as HTMLElement;
+    titleCmp.convertComponent();
   }
   // HtmlAccessor.getHtmlElementNullable('.js_todoPriority');
   // HtmlAccessor.getHtmlElementNullable('.js_todoUrgency');
-}
-
-function convertTimeElem(elem: HTMLElement, baseHtml: string) {
-  const data = HtmlAccessor.getHtmlElement('.js_data', elem).innerText;
-  elem.innerHTML = baseHtml;
-  const selectElem = HtmlAccessor.getHtmlElement(
-    '.js_select',
-    elem
-  ) as HTMLSelectElement;
-  for (let i = 0; i < selectElem.length; i++) {
-    if (selectElem.options[i].value === data) {
-      selectElem.selectedIndex = i;
-    }
-  }
 }
