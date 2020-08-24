@@ -81,5 +81,5 @@ function convertResetTimeElem(elem: HTMLElement, replaceHtml: string) {
     elem
   ) as HTMLSelectElement;
   selectElem.options[selectElem.selectedIndex].value;
-  HtmlAccessor.convertElement(elem, replaceHtml, IDENTIFIER_TIME);
+  HtmlAccessor.convertElementInnerText(elem, replaceHtml, IDENTIFIER_TIME);
 }

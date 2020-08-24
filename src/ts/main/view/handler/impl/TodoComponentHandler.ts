@@ -68,12 +68,36 @@ export class TodoComponentHandler extends ExtensionViewEventHandlerRegister {
         'Title'
       )
     );
+    titleElem.addEventListener('click', (event) => {
+      event.stopPropagation();
+    });
 
     // const detailElem = HtmlAccessor.getHtmlElement('.js_todoDetail');
-    // const estimateTimeElem = HtmlAccessor.getHtmlElement(
-    //   '.js_todoEstimateTime'
-    // );
-    // const resultTimeElem = HtmlAccessor.getHtmlElement('.js_todoResultTime');
+    const estimateTimeElem = HtmlAccessor.getHtmlElement(
+      '.js_todoEstimateTime'
+    );
+    estimateTimeElem.addEventListener(
+      'dblclick',
+      this.subHandlerHolder.supply<TodoElement>(
+        'registerTodoObserver_convert',
+        'EstimateTime'
+      )
+    );
+    estimateTimeElem.addEventListener('click', (event) => {
+      event.stopPropagation();
+    });
+
+    const resultTimeElem = HtmlAccessor.getHtmlElement('.js_todoResultTime');
+    resultTimeElem.addEventListener(
+      'dblclick',
+      this.subHandlerHolder.supply<TodoElement>(
+        'registerTodoObserver_convert',
+        'ResultTime'
+      )
+    );
+    resultTimeElem.addEventListener('click', (event) => {
+      event.stopPropagation();
+    });
     // HtmlAccessor.getHtmlElementNullable('.js_todoPriority');
     // HtmlAccessor.getHtmlElementNullable('.js_todoUrgency');
   }

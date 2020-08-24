@@ -47,12 +47,22 @@ export class HtmlAccessor {
     throw new Error('');
   }
 
-  static convertElement(
+  static convertElementInnerText(
     elem: HTMLElement,
     baseHtml: string,
     identifier: string
   ): void {
     const data = HtmlAccessor.getHtmlElement('.js_data', elem).innerText;
+    elem.innerHTML = baseHtml.replace(identifier, data);
+  }
+
+  static convertElementValue(
+    elem: HTMLElement,
+    baseHtml: string,
+    identifier: string
+  ): void {
+    const data =
+      HtmlAccessor.getHtmlElement('.js_data', elem).getAttribute('value') ?? '';
     elem.innerHTML = baseHtml.replace(identifier, data);
   }
 }

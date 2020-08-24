@@ -21,7 +21,7 @@ export class TodoDetailComponent extends BaseChildComponent {
   }
 
   protected convertProcess(editingElement: HTMLElement): void {
-    HtmlAccessor.convertElement(
+    HtmlAccessor.convertElementInnerText(
       editingElement,
       this.templateParts.editStateHtml,
       this.templateParts.identify
@@ -29,7 +29,7 @@ export class TodoDetailComponent extends BaseChildComponent {
   }
 
   protected reconvertProcess(editingElement: HTMLElement): void {
-    HtmlAccessor.convertElement(
+    HtmlAccessor.convertElementInnerText(
       editingElement,
       this.templateParts.normalStateHtml,
       this.templateParts.identify

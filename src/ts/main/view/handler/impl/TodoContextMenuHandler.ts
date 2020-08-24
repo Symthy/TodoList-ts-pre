@@ -84,12 +84,12 @@ export class TodoContextMenuHandler implements ViewEventHandlerSupplier {
     this.targetTodo.previousElementSibling?.remove();
     this.targetTodo.remove();
     const vmService = ViewModelServiceImpl.getInstance();
-    const inputVm = this.generateViewModel(this.targetTodo, state);
+    const targetVm = this.generateViewModel(this.targetTodo);
     const vmBuilder = ViewModelBuilderFactory.newInstance().createViewModelBuilder();
-    vmService.deleteViewModel(inputVm);
+    vmService.deleteViewModel(targetVm);
     vmService.createViewModel(
       'Todo',
-      vmBuilder.with(inputVm).with({ workState: state }).build()
+      vmBuilder.with(targetVm).with({ workState: state }).build()
     );
   }
 

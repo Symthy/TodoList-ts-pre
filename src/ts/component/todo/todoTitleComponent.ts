@@ -21,7 +21,7 @@ export class TodoTitleComponent extends BaseChildComponent {
   }
 
   protected convertProcess(editingElement: HTMLElement): void {
-    HtmlAccessor.convertElement(
+    HtmlAccessor.convertElementInnerText(
       editingElement,
       this.templateParts.editStateHtml,
       this.templateParts.identify
@@ -31,7 +31,7 @@ export class TodoTitleComponent extends BaseChildComponent {
   reconvertComponent(): void {
     // TODO: TextAreaの値抜きだすconverter実装
     if (this._editingElement) {
-      HtmlAccessor.convertElement(
+      HtmlAccessor.convertElementValue(
         this._editingElement,
         this.templateParts.normalStateHtml,
         this.templateParts.identify
@@ -41,7 +41,7 @@ export class TodoTitleComponent extends BaseChildComponent {
   }
 
   protected reconvertProcess(editingElement: HTMLElement): void {
-    HtmlAccessor.convertElement(
+    HtmlAccessor.convertElementInnerText(
       editingElement,
       this.templateParts.normalStateHtml,
       this.templateParts.identify
