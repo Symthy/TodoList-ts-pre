@@ -24,13 +24,13 @@ webpack4 を使用して フォーマット→自動コンパイル&バンドル
   - https://github.com/Symthy/TodoList-ts-pre/tree/record/first-webpack-introduction
 
 - CSS
-  - 修正前 (flocssもどき)
-    - https://github.com/Symthy/TodoList-ts-pre/tree/record/after-refactor-flocss-modoki-to-precss
   - 修正後 (PRECSS)
+    - https://github.com/Symthy/TodoList-ts-pre/tree/record/after-refactor-flocss-modoki-to-precss
+  - 修正前 (flocssもどき失敗物)
     - https://github.com/Symthy/TodoList-ts-pre/tree/record/before-refactor-flocss-modoki
 
 ## 開発機能メモ
-MVVMで実装（双方向バインディングはやらない）
+MVVMベースでパッケージ分けして実装（双方向バインディングはやらない）
 
 - Task作成
   - 種別：Todo/bugs (容易に追加できるようにする、できたらjsonファイル等で設定変更)
