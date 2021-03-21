@@ -59,10 +59,13 @@ export class HtmlAccessor {
   static convertElementValue(
     elem: HTMLElement,
     baseHtml: string,
-    identifier: string
+    identifier: string,
+    value?: string
   ): void {
     const data =
-      HtmlAccessor.getHtmlElement('.js_data', elem).getAttribute('value') ?? '';
+      value ??
+      HtmlAccessor.getHtmlElement('.js_data', elem).getAttribute('value') ??
+      '';
     elem.innerHTML = baseHtml.replace(identifier, data);
   }
 }

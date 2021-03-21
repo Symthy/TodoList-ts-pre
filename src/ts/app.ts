@@ -1,15 +1,14 @@
 import '../css/style.scss';
 import {
   ChildComponentHolder,
-  createTodoChildComponents
+  createTodoChildComponents,
 } from './component/childComponentHolder';
 import { HtmlAccessor } from './htmlUtils/htmlAccessor';
 import { CreateTaskBtnHandler } from './main/view/handler/impl/CreateTaskBtnHandler';
 import { TodoComponentHandler } from './main/view/handler/impl/TodoComponentHandler';
 import { TodoContextMenuHandler } from './main/view/handler/impl/TodoContextMenuHandler';
 import { TodoConvertElementHandler } from './main/view/handler/impl/todoConvertElementHandler';
-import { TodoResetElementHandler } from './main/view/handler/impl/todoResetElementHandler';
-import { WindowHandler } from './main/view/handler/impl/windowHandler';
+import { TodoReconvertElementHandler } from './main/view/handler/impl/todoReconvertElementHandler';
 import { ViewEventHandlerRegisters } from './main/view/handler/viewEventHandlers';
 import { ViewDisplayer } from './main/view/viewDisplayer';
 import { ViewTodoManagerFactoryImpl } from './main/viewmodel/impl/viewModelManagerFactoryImpl';
@@ -22,16 +21,20 @@ const todoCmpHolder = new ChildComponentHolder<
 >();
 todoCmpHolder.components = createTodoChildComponents();
 
-const todoResetHandler = new TodoResetElementHandler(todoCmpHolder);
+//const todoResetHandler = new TodoResetElementHandler(todoCmpHolder);
 ViewModelServiceImpl.init(new ViewTodoManagerFactoryImpl());
 
 ViewEventHandlerRegisters.init(
   new TodoComponentHandler(
     new TodoContextMenuHandler(),
-    new TodoConvertElementHandler(todoCmpHolder, todoResetHandler)
+    new TodoConvertElementHandler(
+      todoCmpHolder
+      //todoResetHandler
+    ),
+    new TodoReconvertElementHandler(todoCmpHolder)
   ),
-  new CreateTaskBtnHandler(new ViewDisplayer()),
-  new WindowHandler(todoResetHandler)
+  new CreateTaskBtnHandler(new ViewDisplayer())
+  //new WindowHandler(todoResetHandler)
 ).register();
 
 document.body.addEventListener('click', function () {

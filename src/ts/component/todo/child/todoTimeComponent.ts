@@ -8,7 +8,7 @@ import {
   TODO_ESTIMATE_EDIT_HTML,
   TODO_ESTIMATE_NORMAL_HTML,
   TODO_RESULT_EDIT_HTML,
-  TODO_RESULT_NORMAL_HTML
+  TODO_RESULT_NORMAL_HTML,
 } from '../../templates/todoTemplates';
 
 export class TodoTimeComponent extends BaseChildComponent {

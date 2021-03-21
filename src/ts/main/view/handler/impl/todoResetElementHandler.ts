@@ -24,7 +24,7 @@ export class TodoResetElementHandler
   private resetEditMode(): void {
     const it = this.childComponents.components.values();
     for (const component of it) {
-      component.reconvertComponent();
+      component.reconvertComponent('');
     }
   }
 }

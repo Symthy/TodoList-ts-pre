@@ -76,7 +76,7 @@ export const TODO_TITLE_NORMAL_HTML = `
         </h3>
 `;
 export const TODO_TITLE_EDIT_HTML = `
-        <form class="el_todoTitle">
+        <form class="el_todoTitle" onsubmit="return false;">
           <p class="el_todoTitle hp_pr10">
             <input type="text" name="title" class="el_textarea js_data" value="{{ title }}">
           </p>

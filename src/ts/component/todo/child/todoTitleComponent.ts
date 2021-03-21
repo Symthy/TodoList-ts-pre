@@ -4,7 +4,7 @@ import { TemplatePartsHolder } from '../../componentTemplateParts';
 import {
   IDENTIFIER_TITLE,
   TODO_TITLE_EDIT_HTML,
-  TODO_TITLE_NORMAL_HTML
+  TODO_TITLE_NORMAL_HTML,
 } from '../../templates/todoTemplates';
 
 export class TodoTitleComponent extends BaseChildComponent {
@@ -28,23 +28,12 @@ export class TodoTitleComponent extends BaseChildComponent {
     );
   }
 
-  reconvertComponent(): void {
-    // TODO: TextAreaの値抜きだすconverter実装
-    if (this._editingElement) {
-      HtmlAccessor.convertElementValue(
-        this._editingElement,
-        this.templateParts.normalStateHtml,
-        this.templateParts.identify
-      );
-      this._editingElement = null;
-    }
-  }
-
-  protected reconvertProcess(editingElement: HTMLElement): void {
-    HtmlAccessor.convertElementInnerText(
+  protected reconvertProcess(editingElement: HTMLElement, value: string): void {
+    HtmlAccessor.convertElementValue(
       editingElement,
       this.templateParts.normalStateHtml,
-      this.templateParts.identify
+      this.templateParts.identify,
+      value
     );
   }
 }

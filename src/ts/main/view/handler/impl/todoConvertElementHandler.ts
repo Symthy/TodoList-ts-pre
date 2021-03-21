@@ -1,7 +1,5 @@
 import { TodoElement } from '../../../../todoElement';
-import {
-  ViewEventHandlerCallableSupplier, ViewEventHandlerSupplier
-} from '../viewEventHandler';
+import { ViewEventHandlerSupplier } from '../viewEventHandler';
 
 export class TodoConvertElementHandler implements ViewEventHandlerSupplier {
   private convertTitleFunc: EventListener;
@@ -10,8 +8,7 @@ export class TodoConvertElementHandler implements ViewEventHandlerSupplier {
   private convertResultTimeFunc: EventListener;
 
   constructor(
-    private childComponents: ComponentHolder<TodoElement, ConvertibleComponent>,
-    private resetEditingHandler: ViewEventHandlerCallableSupplier
+    private childComponents: ComponentHolder<TodoElement, ConvertibleComponent> //private resetEditingHandler: ViewEventHandlerCallableSupplier
   ) {
     this.convertTitleFunc = (e: Event) => {
       this.convertTitle(e);
@@ -43,30 +40,27 @@ export class TodoConvertElementHandler implements ViewEventHandlerSupplier {
   }
 
   private convertTitle(event: Event) {
-    this.resetEditingHandler.call();
     const titleCmp = this.childComponents.getComponent('Title');
-    titleCmp.editingElement = event.currentTarget as HTMLElement;
+    const targetHtmlElem = event.currentTarget as HTMLElement;
+    titleCmp.registerEditingElement(targetHtmlElem);
     titleCmp.convertComponent();
   }
 
   private convertDetail(event: Event) {
-    this.resetEditingHandler.call();
     const titleCmp = this.childComponents.getComponent('Detail');
-    titleCmp.editingElement = event.currentTarget as HTMLElement;
+    titleCmp.registerEditingElement(event.currentTarget as HTMLElement);
     titleCmp.convertComponent();
   }
 
   private convertEstimateTime(event: Event) {
-    this.resetEditingHandler.call();
     const titleCmp = this.childComponents.getComponent('EstimateTime');
-    titleCmp.editingElement = event.currentTarget as HTMLElement;
+    titleCmp.registerEditingElement(event.currentTarget as HTMLElement);
     titleCmp.convertComponent();
   }
 
   private convertResultTime(event: Event) {
-    this.resetEditingHandler.call();
     const titleCmp = this.childComponents.getComponent('ResultTime');
-    titleCmp.editingElement = event.currentTarget as HTMLElement;
+    titleCmp.registerEditingElement(event.currentTarget as HTMLElement);
     titleCmp.convertComponent();
   }
   // HtmlAccessor.getHtmlElementNullable('.js_todoPriority');

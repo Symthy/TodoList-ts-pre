@@ -1,25 +1,30 @@
+import { HtmlAccessor } from '../../../../htmlUtils/htmlAccessor';
+import { TodoElement } from '../../../../todoElement';
 import {
   ExtensionViewEventHandlerRegister,
   ViewEventHandlerSupplier,
 } from '../viewEventHandler';
-import { HtmlAccessor } from '../../../../htmlUtils/htmlAccessor';
-import { TodoElement } from '../../../../todoElement';
 
 export class TodoComponentHandler extends ExtensionViewEventHandlerRegister {
   constructor(
-    _ctMenuhandler: ViewEventHandlerSupplier,
-    _convertHandler: ViewEventHandlerSupplier
+    _ctMenuHandler: ViewEventHandlerSupplier,
+    _convertHandler: ViewEventHandlerSupplier,
+    _reconvertHandler: ViewEventHandlerSupplier
   ) {
     super();
-    this.subHandlerHolder.add('registerRightClickEvent', _ctMenuhandler);
-    this.subHandlerHolder.add('registerTodoObserver_context', _ctMenuhandler);
+    this.subHandlerHolder.add('registerRightClickEvent', _ctMenuHandler);
+    this.subHandlerHolder.add('registerTodoObserver_context', _ctMenuHandler);
     this.subHandlerHolder.add('registerTodoObserver_convert', _convertHandler);
+    this.subHandlerHolder.add(
+      'registerTodoObserver_reconvert',
+      _reconvertHandler
+    );
   }
 
   public register(): void {
     this.registerRightClickEvent();
-    this.registerTodoObserver();
-    this.registerDoudbleClickElemEvent();
+    this.registerAddTodoObserver();
+    this.registerTodoElemEvent();
   }
 
   private registerRightClickEvent(): void {
@@ -31,7 +36,7 @@ export class TodoComponentHandler extends ExtensionViewEventHandlerRegister {
     });
   }
 
-  private registerTodoObserver() {
+  private registerAddTodoObserver() {
     const observer = new MutationObserver((records) => {
       records.forEach((rec) => {
         const nodes = Array.from(rec.addedNodes);
@@ -43,7 +48,18 @@ export class TodoComponentHandler extends ExtensionViewEventHandlerRegister {
           'contextmenu',
           this.subHandlerHolder.supply('registerTodoObserver_context')
         );
-        HtmlAccessor.getHtmlElement('.js_todoTitle', todoElem).addEventListener(
+        const todoTitleElem = HtmlAccessor.getHtmlElement(
+          '.js_todoTitle',
+          todoElem
+        );
+        todoTitleElem.addEventListener(
+          'keypress',
+          this.subHandlerHolder.supply<TodoElement>(
+            'registerTodoObserver_reconvert',
+            'Title'
+          )
+        );
+        todoTitleElem.addEventListener(
           'dblclick',
           this.subHandlerHolder.supply<TodoElement>(
             'registerTodoObserver_convert',
@@ -52,14 +68,14 @@ export class TodoComponentHandler extends ExtensionViewEventHandlerRegister {
         );
       });
     });
-    for (const todolist of HtmlAccessor.getHtmlElements('.js_todolist')) {
-      observer.observe(todolist, {
+    for (const todoList of HtmlAccessor.getHtmlElements('.js_todolist')) {
+      observer.observe(todoList, {
         childList: true,
       });
     }
   }
 
-  private registerDoudbleClickElemEvent(): void {
+  private registerTodoElemEvent(): void {
     const titleElem = HtmlAccessor.getHtmlElement('.js_todoTitle');
     titleElem.addEventListener(
       'dblclick',
@@ -71,6 +87,13 @@ export class TodoComponentHandler extends ExtensionViewEventHandlerRegister {
     titleElem.addEventListener('click', (event) => {
       event.stopPropagation();
     });
+    titleElem.addEventListener(
+      'keypress',
+      this.subHandlerHolder.supply<TodoElement>(
+        'registerTodoObserver_reconvert',
+        'Title'
+      )
+    );
 
     // const detailElem = HtmlAccessor.getHtmlElement('.js_todoDetail');
     const estimateTimeElem = HtmlAccessor.getHtmlElement(

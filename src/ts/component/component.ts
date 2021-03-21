@@ -13,5 +13,7 @@ interface ChildComponent extends Component {
 
 interface ConvertibleComponent extends ChildComponent {
   convertComponent(): void;
-  reconvertComponent(): void;
+  reconvertComponent(value: string): void;
+  registerEditingElement(elem: HTMLElement): void;
+  clearEditingElement(): void;
 }

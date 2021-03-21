@@ -12,8 +12,8 @@ export abstract class BaseChildComponent implements ConvertibleComponent {
   abstract init(): void;
 
   convertComponent(): void | never {
-    if (this._editingElement) {
-      this.convertProcess(this._editingElement);
+    if (this.editingElement) {
+      this.convertProcess(this.editingElement);
       return;
     }
     throw new Error('Nothing editing element');
@@ -21,19 +21,27 @@ export abstract class BaseChildComponent implements ConvertibleComponent {
 
   protected abstract convertProcess(editingElement: HTMLElement): void;
 
-  reconvertComponent(): void {
-    if (this._editingElement) {
-      this.reconvertProcess(this._editingElement);
-      this._editingElement = null;
+  reconvertComponent(value: string): void {
+    if (this.editingElement) {
+      this.reconvertProcess(this.editingElement, value);
+      this.clearEditingElement();
     }
   }
 
-  protected abstract reconvertProcess(editingElement: HTMLElement): void;
+  protected abstract reconvertProcess(
+    editingElement: HTMLElement,
+    value: string
+  ): void;
 
   get editingElement(): HTMLElement | null {
     return this._editingElement;
   }
-  set editingElement(elem: HTMLElement | null) {
+
+  registerEditingElement(elem: HTMLElement) {
     this._editingElement = elem;
+  }
+
+  clearEditingElement(): void {
+    this._editingElement = null;
   }
 }
