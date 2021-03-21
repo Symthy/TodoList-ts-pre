@@ -1,24 +1,24 @@
 import '../css/style.scss';
-import { ViewModelServiceImpl } from './main/viewmodel/impl/viewModelServiceImpl';
-import { ViewTodoManagerFactoryImpl } from './main/viewmodel/impl/viewModelManagerFactoryImpl';
-import { TodoContextMenuHandler } from './main/view/handler/impl/TodoContextMenuHandler';
-import { ViewEventHandlerRegisters } from './main/view/handler/viewEventHandlers';
-import { TodoComponentHandler } from './main/view/handler/impl/TodoComponentHandler';
+import {
+  ChildComponentHolder,
+  createTodoChildComponents
+} from './component/childComponentHolder';
+import { HtmlAccessor } from './htmlUtils/htmlAccessor';
 import { CreateTaskBtnHandler } from './main/view/handler/impl/CreateTaskBtnHandler';
-import { ViewDisplayer } from './main/view/viewDisplayer';
+import { TodoComponentHandler } from './main/view/handler/impl/TodoComponentHandler';
+import { TodoContextMenuHandler } from './main/view/handler/impl/TodoContextMenuHandler';
 import { TodoConvertElementHandler } from './main/view/handler/impl/todoConvertElementHandler';
 import { TodoResetElementHandler } from './main/view/handler/impl/todoResetElementHandler';
 import { WindowHandler } from './main/view/handler/impl/windowHandler';
-import { HtmlAccessor } from './htmlUtils/htmlAccessor';
-import {
-  ChildComponentHolder,
-  createTodoChildComponents,
-} from './component/childComponentHolder';
+import { ViewEventHandlerRegisters } from './main/view/handler/viewEventHandlers';
+import { ViewDisplayer } from './main/view/viewDisplayer';
+import { ViewTodoManagerFactoryImpl } from './main/viewmodel/impl/viewModelManagerFactoryImpl';
+import { ViewModelServiceImpl } from './main/viewmodel/impl/viewModelServiceImpl';
 import { TodoElement } from './todoElement';
 
 const todoCmpHolder = new ChildComponentHolder<
   TodoElement,
-  ConvertableComponent
+  ConvertibleComponent
 >();
 todoCmpHolder.components = createTodoChildComponents();
 

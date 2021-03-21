@@ -1,11 +1,11 @@
-import { HtmlAccessor } from '../../htmlUtils/htmlAccessor';
+import { HtmlAccessor } from '../../../htmlUtils/htmlAccessor';
+import { BaseChildComponent } from '../../baseChildComponent';
+import { TemplatePartsHolder } from '../../componentTemplateParts';
 import {
   IDENTIFIER_TITLE,
   TODO_TITLE_EDIT_HTML,
-  TODO_TITLE_NORMAL_HTML,
-} from '../templates/todoTemplates';
-import { BaseChildComponent } from '../baseChildComponent';
-import { TemplatePartsHolder } from '../componentTemplateParts';
+  TODO_TITLE_NORMAL_HTML
+} from '../../templates/todoTemplates';
 
 export class TodoTitleComponent extends BaseChildComponent {
   constructor(templateParts?: TemplatePartsHolder) {

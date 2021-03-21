@@ -11,7 +11,7 @@ interface ChildComponent extends Component {
   editingElement: HTMLElement | null;
 }
 
-interface ConvertableComponent extends ChildComponent {
+interface ConvertibleComponent extends ChildComponent {
   convertComponent(): void;
   reconvertComponent(): void;
 }

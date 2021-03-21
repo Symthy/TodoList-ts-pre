@@ -1,6 +1,6 @@
 import { TemplatePartsHolder } from './componentTemplateParts';
 
-export abstract class BaseChildComponent implements ConvertableComponent {
+export abstract class BaseChildComponent implements ConvertibleComponent {
   protected _editingElement: HTMLElement | null;
   protected templateParts: TemplatePartsHolder;
 

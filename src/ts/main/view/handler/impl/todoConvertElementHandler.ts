@@ -1,23 +1,22 @@
-import {
-  ViewEventHandlerSupplier,
-  ViewEventHandlerCallableSupplier,
-} from '../viewEventHandler';
 import { TodoElement } from '../../../../todoElement';
+import {
+  ViewEventHandlerCallableSupplier, ViewEventHandlerSupplier
+} from '../viewEventHandler';
 
 export class TodoConvertElementHandler implements ViewEventHandlerSupplier {
   private convertTitleFunc: EventListener;
-  private convertDeitalFunc: EventListener;
+  private convertDetailFunc: EventListener;
   private convertEstimateTimeFunc: EventListener;
   private convertResultTimeFunc: EventListener;
 
   constructor(
-    private childComponents: ComponentHolder<TodoElement, ConvertableComponent>,
+    private childComponents: ComponentHolder<TodoElement, ConvertibleComponent>,
     private resetEditingHandler: ViewEventHandlerCallableSupplier
   ) {
     this.convertTitleFunc = (e: Event) => {
       this.convertTitle(e);
     };
-    this.convertDeitalFunc = (e: Event) => {
+    this.convertDetailFunc = (e: Event) => {
       this.convertDetail(e);
     };
     this.convertEstimateTimeFunc = (e: Event) => {
@@ -34,7 +33,7 @@ export class TodoConvertElementHandler implements ViewEventHandlerSupplier {
     if (arg === 'Title') {
       return this.convertTitleFunc;
     } else if (arg === 'Detail') {
-      return this.convertDeitalFunc;
+      return this.convertDetailFunc;
     } else if (arg === 'EstimateTime') {
       return this.convertEstimateTimeFunc;
     } else if (arg === 'ResultTime') {
