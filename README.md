@@ -1,10 +1,10 @@
 # TodoList-ts-pre Repository
 
-CSSとTypeScript勉強用。割とガチめなTodoList作成　Not Library. Not Framework.
+TypeScript勉強用。Not Library. Not Framework. なTodoList
 
 ## How to use
 
-※開発中のため動きません。
+※開発中のため一部しか動きません。
 
 git clone
 
@@ -30,7 +30,6 @@ webpack4 を使用して フォーマット→自動コンパイル&バンドル
     - https://github.com/Symthy/TodoList-ts-pre/tree/record/before-refactor-flocss-modoki
 
 ## 開発機能メモ
-MVVMベースでパッケージ分けして実装（双方向バインディングはやらない）
 
 - Task作成
   - 種別：Todo/bugs (容易に追加できるようにする、できたらjsonファイル等で設定変更)
