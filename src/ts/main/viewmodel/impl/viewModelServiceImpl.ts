@@ -62,6 +62,7 @@ export class ViewModelServiceImpl implements ViewModelService {
     const vmManager = this.viewModelManagers.get(viewModel.modelType);
     if (vmManager) {
       vmManager.delete(viewModel);
+      return;
     }
     throw new Error('');
   }

@@ -1,11 +1,11 @@
+import { HtmlAccessor } from '../../../htmlUtils/htmlAccessor';
+import { BaseChildComponent } from '../../baseChildComponent';
+import { TemplatePartsHolder } from '../../componentTemplateParts';
 import {
   IDENTIFIER_DETAIL,
-  TODO_DETAIL_NORMAL_HTML,
   TODO_DETAIL_EDIT_HTML,
-} from '../templates/todoTemplates';
-import { BaseChildComponent } from '../baseChildComponent';
-import { TemplatePartsHolder } from '../componentTemplateParts';
-import { HtmlAccessor } from '../../htmlUtils/htmlAccessor';
+  TODO_DETAIL_NORMAL_HTML,
+} from '../../templates/todoTemplates';
 
 export class TodoDetailComponent extends BaseChildComponent {
   constructor(templateParts?: TemplatePartsHolder) {
@@ -21,7 +21,7 @@ export class TodoDetailComponent extends BaseChildComponent {
   }
 
   protected convertProcess(editingElement: HTMLElement): void {
-    HtmlAccessor.convertElement(
+    HtmlAccessor.convertElementInnerText(
       editingElement,
       this.templateParts.editStateHtml,
       this.templateParts.identify
@@ -29,7 +29,7 @@ export class TodoDetailComponent extends BaseChildComponent {
   }
 
   protected reconvertProcess(editingElement: HTMLElement): void {
-    HtmlAccessor.convertElement(
+    HtmlAccessor.convertElementInnerText(
       editingElement,
       this.templateParts.normalStateHtml,
       this.templateParts.identify

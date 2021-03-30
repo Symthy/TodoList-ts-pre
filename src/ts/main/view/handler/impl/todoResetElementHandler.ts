@@ -1,12 +1,12 @@
-import { ViewEventHandlerCallableSupplier } from '../viewEventHandler';
 import { TodoElement } from '../../../../todoElement';
+import { ViewEventHandlerCallableSupplier } from '../viewEventHandler';
 
 export class TodoResetElementHandler
   implements ViewEventHandlerCallableSupplier {
   private resetEditModeFunc: EventListener;
 
   constructor(
-    private childComponents: ComponentHolder<TodoElement, ConvertableComponent>
+    private childComponents: ComponentHolder<TodoElement, ConvertibleComponent>
   ) {
     this.resetEditModeFunc = () => {
       this.resetEditMode();
@@ -24,7 +24,7 @@ export class TodoResetElementHandler
   private resetEditMode(): void {
     const it = this.childComponents.components.values();
     for (const component of it) {
-      component.reconvertComponent();
+      component.reconvertComponent('');
     }
   }
 }

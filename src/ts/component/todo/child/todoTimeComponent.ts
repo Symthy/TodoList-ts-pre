@@ -1,15 +1,15 @@
-import { HtmlAccessor } from '../../htmlUtils/htmlAccessor';
-import { BaseChildComponent } from '../baseChildComponent';
+import { HtmlAccessor } from '../../../htmlUtils/htmlAccessor';
+import { BaseChildComponent } from '../../baseChildComponent';
+import { TemplatePartsHolder } from '../../componentTemplateParts';
 import {
   IDENTIFIER_TIME,
-  TODO_ESTIMATE_NORMAL_HTML,
+  TIME_SELECT_EDIT_HTML,
+  TIME_SELECT_NORMAL_HTML,
   TODO_ESTIMATE_EDIT_HTML,
+  TODO_ESTIMATE_NORMAL_HTML,
   TODO_RESULT_EDIT_HTML,
   TODO_RESULT_NORMAL_HTML,
-  TIME_SELECT_NORMAL_HTML,
-  TIME_SELECT_EDIT_HTML,
-} from '../templates/todoTemplates';
-import { TemplatePartsHolder } from '../componentTemplateParts';
+} from '../../templates/todoTemplates';
 
 export class TodoTimeComponent extends BaseChildComponent {
   constructor(
@@ -81,5 +81,5 @@ function convertResetTimeElem(elem: HTMLElement, replaceHtml: string) {
     elem
   ) as HTMLSelectElement;
   selectElem.options[selectElem.selectedIndex].value;
-  HtmlAccessor.convertElement(elem, replaceHtml, IDENTIFIER_TIME);
+  HtmlAccessor.convertElementInnerText(elem, replaceHtml, IDENTIFIER_TIME);
 }

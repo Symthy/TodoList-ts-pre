@@ -1,7 +1,7 @@
 import { TodoElement } from '../todoElement';
-import { TodoTimeComponent } from './todo/todoTimeComponent';
-import { TodoTitleComponent } from './todo/todoTitleComponent';
-import { TodoDetailComponent } from './todo/todoDetailComponent';
+import { TodoDetailComponent } from './todo/child/todoDetailComponent';
+import { TodoTimeComponent } from './todo/child/todoTimeComponent';
+import { TodoTitleComponent } from './todo/child/todoTitleComponent';
 
 export class ChildComponentHolder<T, C extends Component>
   implements ComponentHolder<T, C> {
@@ -29,9 +29,9 @@ export class ChildComponentHolder<T, C extends Component>
 
 export function createTodoChildComponents(): Map<
   TodoElement,
-  ConvertableComponent
+  ConvertibleComponent
 > {
-  const components = new Map<TodoElement, ConvertableComponent>();
+  const components = new Map<TodoElement, ConvertibleComponent>();
   components.set('Title', new TodoTitleComponent());
   components.set('EstimateTime', new TodoTimeComponent('estimate'));
   components.set('ResultTime', new TodoTimeComponent('result'));

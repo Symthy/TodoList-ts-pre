@@ -10,7 +10,7 @@ export class TodoComponent implements Component {
     private selector: string
   ) {}
 
-  init() {
+  init(): void {
     const state = this.todo.workState ?? 'Waiting';
     const stateStyleClass = convertStateClass(state);
     const template = new Template(this.modelType);
